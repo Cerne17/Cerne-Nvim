@@ -249,7 +249,9 @@ require('lazy').setup({
   -- For this one to work, installation through terminal is needed
   -- The First time you open the nvim with it installed, insert: ':Copilot setup'
   {
-    'github/copilot.vim'
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter'
   },
 
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins

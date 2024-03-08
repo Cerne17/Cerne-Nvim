@@ -40,10 +40,6 @@ require 'harpoon-setup'
 -- (Background Transparency)
 require 'transparent-setup'
 
---[[ Configure Comment ]]
--- (Toggles Lines/Blocks into Comments)
-require 'comment-setup'
-
 --[[ Configure Copilot ]]
 -- (Coding Assistant)
 require 'copilot-setup'

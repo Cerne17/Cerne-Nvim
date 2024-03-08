@@ -40,5 +40,13 @@ require 'harpoon-setup'
 -- (Background Transparency)
 require 'transparent-setup'
 
+--[[ Configure Comment ]]
+-- (Toggles Lines/Blocks into Comments)
+require 'comment-setup'
+
+--[[ Configure Copilot ]]
+-- (Coding Assistant)
+require 'copilot-setup'
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

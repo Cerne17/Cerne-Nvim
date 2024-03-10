@@ -32,7 +32,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- Misc Keymaps
-vim.keymap.set('n', '<leader>pv', ':Ex <CR>', { desc = "Opens the default Explorer" })
-
 -- vim: ts=2 sts=2 sw=2 et

@@ -153,7 +153,13 @@ require('lazy').setup({
   },
 
   {
-    'ThePrimeagen/vim-be-good'
+    'folke/lsp-colors.nvim',
+    lazy = true
+  },
+
+  {
+    'ThePrimeagen/vim-be-good',
+    lazy = true
   },
 
   {

@@ -5,15 +5,19 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- [[ Install `lazy.nvim` plugin manager ]]
+-- (Package manager)
 require 'lazy-bootstrap'
 
 -- [[ Configure plugins ]]
+-- (lazy install and load plugins)
 require 'lazy-plugins'
 
 -- [[ Setting options ]]
+-- (General settings from nvim)
 require 'options'
 
 -- [[ Basic Keymaps ]]
+-- (General Keymaps not related to plugins)
 require 'keymaps'
 
 -- [[ Configure Telescope ]]

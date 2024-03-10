@@ -14,6 +14,10 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+-- Better movement
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move the cursor half a page up and center the screen' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move the cursor half a page down and center the screen' })
+
 -- LazyGit keymap
 vim.keymap.set('n', '<leader>gg', ':LazyGit<CR>', { desc = 'Opens the LazyGit plugin at the CWD' })
 

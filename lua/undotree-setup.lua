@@ -1,6 +1,4 @@
-vim.keymap.set('n', '<leader>u', require('undotree').toggle, { noremap = true, silent = true },
-  { desc = 'Toggle undotree' })
-
+vim.keymap.set('n', '<leader>u', require('undotree').toggle, { noremap = true, silent = true, desc = 'Toggle undotree' })
 local undotree = require('undotree')
 
 undotree.setup({

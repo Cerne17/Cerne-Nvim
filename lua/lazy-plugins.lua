@@ -275,6 +275,11 @@ require('lazy').setup({
     },
   },
 
+  -- For automating the Jest Tests in Neovim Execution
+  {
+    "David-Kunz/jester",
+  },
+
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
 }, {})

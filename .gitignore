@@ -3,3 +3,4 @@ stash.diff
 test.sh
 .luarc.json
 nvim
+nvim-linux64.tar.gz

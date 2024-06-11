@@ -46,3 +46,6 @@ vim.o.nu = true
 -- Highlight the 80th column
 local opt = vim.opt
 opt.colorcolumn = "80"
+
+-- Importing experimental features
+require 'testing_features.autoreload'

@@ -1,7 +1,7 @@
 require("codesnap").setup({
-  opts = {
-    save_path = "~/Pictures",
-    has_breadcrumbs = true,
-    bg_theme = "grape",
-  },
+  save_path = "~/Pictures",
+  has_breadcrumbs = true,
+  show_workspace = true,
+  has_line_number = true,
+  bg_theme = "sea",
 })

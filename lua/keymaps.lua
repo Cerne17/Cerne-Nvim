@@ -23,7 +23,7 @@ vim.keymap.set('n', '<leader>gg', ':LazyGit<CR>', { desc = 'Opens the LazyGit pl
 
 -- Codesnap keymaps
 vim.keymap.set('x', '<leader>tc', ':CodeSnap<CR>', { desc = 'Save selected code snapshot into clipboard' })
-vim.keymap.set('x', '<leader>ts', ':CodeSnap<CR>', { desc = 'Save selected code snapshot into clipboard' })
+vim.keymap.set('x', '<leader>ts', ':CodeSnapSave<CR>', { desc = 'Save selected code snapshot to ~/Pictures' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

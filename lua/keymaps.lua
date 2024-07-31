@@ -21,6 +21,10 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move the cursor half a page do
 -- LazyGit keymap
 vim.keymap.set('n', '<leader>gg', ':LazyGit<CR>', { desc = 'Opens the LazyGit plugin at the CWD' })
 
+-- Codesnap keymaps
+vim.keymap.set('x', '<leader>tc', ':CodeSnap<CR>', { desc = 'Save selected code snapshot into clipboard' })
+vim.keymap.set('x', '<leader>ts', ':CodeSnap<CR>', { desc = 'Save selected code snapshot into clipboard' })
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })

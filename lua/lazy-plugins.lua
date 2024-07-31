@@ -285,6 +285,11 @@ require('lazy').setup({
     config = function() end,
   },
 
+  {
+    "mistricky/codesnap.nvim",
+    build = "make",
+  }
+
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
 }, {})

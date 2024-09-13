@@ -40,8 +40,10 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 vim.o.nu = true
+vim.o.relativenumber = true
 
 -- vim: ts=2 sts=2 sw=2 et
+
 
 -- Highlight the 80th column
 local opt = vim.opt

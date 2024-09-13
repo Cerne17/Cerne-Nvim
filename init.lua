@@ -38,6 +38,9 @@ vim.cmd('colorscheme cyberdream')
 -- [ Requires General vim's keymaps ]
 require("cerne.keymaps")
 
+-- [ Requires Undo Tree config ]
+require("cerne.plugins.undo-tree-setup")
+
 -- [ Requires Oil's Config ]
 -- File Explorer
 require("cerne.plugins.oil-setup")

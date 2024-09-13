@@ -244,6 +244,15 @@ require('lazy').setup({
     },
   },
 
+ {
+    "jiaoshijie/undotree",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = true,
+    keys = { -- load the plugin only when using it's keybinding:
+      { "<leader>u", "<CMD>lua require('undotree').toggle() <CR>" },
+    },
+  },
+
   -- Automatically generates and updates the .md TOC's
   {
     'mzlogin/vim-markdown-toc'

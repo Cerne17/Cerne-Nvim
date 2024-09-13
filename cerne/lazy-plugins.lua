@@ -222,6 +222,17 @@ require('lazy').setup({
     'folke/which-key.nvim',  opts = {}
   },
 
+{
+  'stevearc/oil.nvim',
+  ---@module 'oil'
+  ---@type oil.SetupOpts
+  opts = {},
+  -- Optional dependencies
+  -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
+  dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+},
+
+  -- Automatically generates and updates the .md TOC's
   {
     'mzlogin/vim-markdown-toc'
   },

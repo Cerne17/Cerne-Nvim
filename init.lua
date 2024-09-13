@@ -38,8 +38,9 @@ vim.cmd('colorscheme cyberdream')
 -- [ Requires General vim's keymaps ]
 require("cerne.keymaps")
 
--- [ Requires the Temp file ]
-require("cerne.temp")
+-- [ Requires Oil's Config ]
+-- File Explorer
+require("cerne.plugins.oil-setup")
 
 -- [ Custom Functionalities ]
 require("cerne.custom.autoformat")

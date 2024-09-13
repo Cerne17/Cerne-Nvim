@@ -5,14 +5,42 @@ vim.g.maplocalleader = ' '
 -- [ Installs Lazy Package Manager ]
 require("cerne.lazy-pm")
 
+-- [ Requires the basic plugins installations ]
+require("cerne.lazy-plugins")
+
 -- [ Sets the default vim options ]
 require("cerne.options")
 
--- [ Requires the basic plugins installations ]
-require("cerne.lazy-plugins")
+-- [ Requires the Treesitter's config ]
+-- Highlighting Plugin
+require("cerne.plugins.treesitter-setup")
+
+-- [ Requires the LSP's configurations ]
+require("cerne.plugins.lsp-setup")
+
+-- [ Requires the Telescope Config]
+-- Fuzzy Finder
+require("cerne.plugins.telescope-setup")
+
+-- [ Requires the Harpoon Config]
+-- File Multiplexer
+require("cerne.plugins.harpoon-setup")
 
 -- [ Requires the Rose Pine Colors Config ]
 require("cerne.plugins.rose-setup")
 
+-- [ Requires the Cyberdream Colors Config ]
+require("cerne.plugins.cyberdream")
+
+-- Setting the Default Colorscheme
+vim.cmd('colorscheme cyberdream')
+
 -- [ Requires General vim's keymaps ]
 require("cerne.keymaps")
+
+-- [ Requires the Temp file ]
+require("cerne.temp")
+
+-- [ Custom Functionalities ]
+require("cerne.custom.autoformat")
+require("cerne.custom.debug")

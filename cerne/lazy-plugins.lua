@@ -253,6 +253,10 @@ require('lazy').setup({
     },
   },
 
+  {
+    'github/copilot.vim'
+  },
+
   -- Automatically generates and updates the .md TOC's
   {
     'mzlogin/vim-markdown-toc'

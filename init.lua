@@ -3,48 +3,48 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- [ Installs Lazy Package Manager ]
-require("cerne.lazy-pm")
+require "lazy-pm"
 
 -- [ Requires the basic plugins installations ]
-require("cerne.lazy-plugins")
+require  "lazy-plugins"
 
 -- [ Sets the default vim options ]
-require("cerne.options")
+require  "options"
 
 -- [ Requires the Treesitter's config ]
 -- Highlighting Plugin
-require("cerne.plugins.treesitter-setup")
+require  "plugins.treesitter-setup"
 
 -- [ Requires the LSP's configurations ]
-require("cerne.plugins.lsp-setup")
+require  "plugins.lsp-setup"
 
 -- [ Requires the Telescope Config]
 -- Fuzzy Finder
-require("cerne.plugins.telescope-setup")
+require  "plugins.telescope-setup"
 
 -- [ Requires the Harpoon Config]
 -- File Multiplexer
-require("cerne.plugins.harpoon-setup")
+require  "plugins.harpoon-setup"
 
 -- [ Requires the Rose Pine Colors Config ]
-require("cerne.plugins.rose-setup")
+require  "plugins.rose-setup"
 
 -- [ Requires the Cyberdream Colors Config ]
-require("cerne.plugins.cyberdream")
+require  "plugins.cyberdream"
 
 -- Setting the Default Colorscheme
 vim.cmd('colorscheme cyberdream')
 
 -- [ Requires General vim's keymaps ]
-require("cerne.keymaps")
+require  "keymaps"
 
 -- [ Requires Undo Tree config ]
-require("cerne.plugins.undo-tree-setup")
+require  "plugins.undo-tree-setup"
 
 -- [ Requires Oil's Config ]
 -- File Explorer
-require("cerne.plugins.oil-setup")
+require  "plugins.oil-setup"
 
 -- [ Custom Functionalities ]
-require("cerne.custom.autoformat")
-require("cerne.custom.debug")
+require  "custom.autoformat"
+require  "custom.debug"

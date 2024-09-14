@@ -41,6 +41,9 @@ require  "keymaps"
 -- [ Requires Undo Tree config ]
 require  "plugins.undo-tree-setup"
 
+-- [ Plugin to create good Screenshots ]
+require "plugins.codesnap-setup"
+
 -- [ Requires Oil's Config ]
 -- File Explorer
 require  "plugins.oil-setup"

@@ -250,6 +250,11 @@ require('lazy').setup({
   },
 
   {
+    "mistricky/codesnap.nvim",
+    build = "make",
+  },
+
+  {
     'github/copilot.vim'
   },
 

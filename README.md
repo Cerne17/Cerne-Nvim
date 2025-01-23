@@ -10,6 +10,7 @@
 └── init.lua
 ```
 # 2. Features
+```
 [ ] [ripgrep]() (file finder) *
 [ ] lazygit *
 [ ] nerd-font *
@@ -28,7 +29,9 @@
 [ ] Comment.nvim (shortcut for commenting)
 [ ] nvim-autopairs.nvim (auto-closing brackets/quotes)
 [ ] harpoon.nvim (jumping across buffers)
-<hr>
+```
+```
 * -> pre-requisites
 + -> core
 ~ -> optional
+```

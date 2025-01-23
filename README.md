@@ -18,7 +18,7 @@
 [x] lazy.nvim (nvim package-manager) *
 [x] plenary.nvim (pre-requisite for telescope) *
 [x] telescope.nvim (fuzzy finder) +
-[ ] tree-sitter.nvim (highlighting) +
+[x] tree-sitter.nvim (highlighting) +
 [ ] tokyonight.nvim (colorscheme) ~
 [ ] mason.nvim (lsp) +
 [ ] lazygit.nvim (git cli) ~

@@ -1,1 +1,1 @@
-require("mason")
+require "config.lsp"

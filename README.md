@@ -15,7 +15,7 @@
 [x] lazygit ~
 [x] nerd-font *
 [x] luarocks (lua package-manager) *
-[ ] lazy.nvim (nvim package-manager) *
+[x] lazy.nvim (nvim package-manager) *
 [ ] telescope.nvim (fuzzy finder) +
 [ ] tree-sitter.nvim (highlighting) +
 [ ] tokyonight.nvim (colorscheme) ~

@@ -28,14 +28,32 @@
 [ ] cmp-nvim-lsp.nvim (completion) +
 [ ] cmp-path.nvim (completion) +
 [ ] nvim-cmp (completion engine) +
+[ ] Oil.nvim (file management) ~
 [ ] lualine.nvim (status bar) ~
 [ ] which-key.nvim (keybinding manager) +
 [ ] Comment.nvim (shortcut for commenting)
 [ ] nvim-autopairs.nvim (auto-closing brackets/quotes)
 [ ] harpoon.nvim (jumping across buffers)
+[ ] Copilot.nvim (AI assistant/chat)
 ```
 ```
 * -> pre-requisites
 + -> core
 ~ -> optional
+```
+# 3. TODO's
+## 3.1. Configurations:
+```
+[ ] telescope *&
+[ ] general keybindings *
+[ ] which-key *&
+[ ] harpoon *&
+[ ] Oil *&
+[ ] Copilot *&
+[ ] lazygit *
+[ ] cmp *
+```
+```
+* -> key-bindings
+& -> configurations
 ```

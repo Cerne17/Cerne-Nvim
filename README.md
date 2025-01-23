@@ -23,7 +23,7 @@
 [x] tokyonight.nvim (colorscheme) ~
 [x] mason.nvim (lsp) +
 [x] lazygit.nvim (git cli) ~
-[ ] gitsigns.nvim (git info) +
+[x] gitsigns.nvim (git info) +
 [ ] mason-lspconfig.nvim (lsp) +
 [ ] cmp-buffer.nvim (completion) +
 [ ] cmp-nvim-lsp.nvim (completion) +

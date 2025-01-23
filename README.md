@@ -16,7 +16,8 @@
 [x] nerd-font *
 [x] luarocks (lua package-manager) *
 [x] lazy.nvim (nvim package-manager) *
-[ ] telescope.nvim (fuzzy finder) +
+[x] plenary.nvim (pre-requisite for telescope) *
+[x] telescope.nvim (fuzzy finder) +
 [ ] tree-sitter.nvim (highlighting) +
 [ ] tokyonight.nvim (colorscheme) ~
 [ ] mason.nvim (lsp) +

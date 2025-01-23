@@ -22,7 +22,7 @@
 [x] tree-sitter.nvim (highlighting) +
 [x] tokyonight.nvim (colorscheme) ~
 [x] mason.nvim (lsp) +
-[ ] lazygit.nvim (git cli) ~
+[x] lazygit.nvim (git cli) ~
 [ ] gitsigns.nvim (git info) +
 [ ] mason-lspconfig.nvim (lsp) +
 [ ] cmp-buffer.nvim (completion) +

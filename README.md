@@ -11,14 +11,17 @@
 ```
 # 2. Features
 ```
-[ ] [ripgrep]() (file finder) *
-[ ] lazygit *
-[ ] nerd-font *
-[ ] lazy.nvim (package-manager) *
+[x] ripgrep (file finder) *
+[x] lazygit ~
+[x] nerd-font *
+[x] luarocks (lua package-manager) *
+[ ] lazy.nvim (nvim package-manager) *
 [ ] telescope.nvim (fuzzy finder) +
 [ ] tree-sitter.nvim (highlighting) +
 [ ] tokyonight.nvim (colorscheme) ~
 [ ] mason.nvim (lsp) +
+[ ] lazygit.nvim (git cli) ~
+[ ] gitsigns.nvim (git info) +
 [ ] mason-lspconfig.nvim (lsp) +
 [ ] cmp-buffer.nvim (completion) +
 [ ] cmp-nvim-lsp.nvim (completion) +

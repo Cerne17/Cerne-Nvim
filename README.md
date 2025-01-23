@@ -19,7 +19,7 @@
 [x] plenary.nvim (pre-requisite for telescope) *
 [x] telescope.nvim (fuzzy finder) +
 [x] tree-sitter.nvim (highlighting) +
-[ ] tokyonight.nvim (colorscheme) ~
+[x] tokyonight.nvim (colorscheme) ~
 [ ] mason.nvim (lsp) +
 [ ] lazygit.nvim (git cli) ~
 [ ] gitsigns.nvim (git info) +

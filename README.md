@@ -16,6 +16,7 @@
 [x] nerd-font *
 [x] luarocks (lua package-manager) *
 [x] lazy.nvim (nvim package-manager) *
+[x] Powershell 7.x (pre-requisite for Mason) *
 [x] plenary.nvim (pre-requisite for telescope) *
 [x] telescope.nvim (fuzzy finder) +
 [x] tree-sitter.nvim (highlighting) +

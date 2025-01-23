@@ -21,7 +21,7 @@
 [x] telescope.nvim (fuzzy finder) +
 [x] tree-sitter.nvim (highlighting) +
 [x] tokyonight.nvim (colorscheme) ~
-[ ] mason.nvim (lsp) +
+[x] mason.nvim (lsp) +
 [ ] lazygit.nvim (git cli) ~
 [ ] gitsigns.nvim (git info) +
 [ ] mason-lspconfig.nvim (lsp) +

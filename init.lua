@@ -2,10 +2,21 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 require("config.lazy")
-require("config.init")
 
-vim.keymap.set({'n','v'}, '<leader>pv', '<cmd>Explore<CR>', {silent = true})
+-- [[ Plugins Settings Section START ]]
 
--- [[ Sets my visual preferences]]
--- Such as colorscheme
-require("cerne.visuals")
+-- [[ Autocompletion Settings ]]
+require("config.cmp")
+
+-- [[ Gitsigns Settings ]]
+require("config.gitsigns")
+
+-- [[ LSP Settings ]]
+require("config.lsp")
+
+-- [[ Plugins Settings Section END ]]
+
+-- [[ Personal Settings ]]
+-- Not related to any plugins
+require("cerne.init")
+

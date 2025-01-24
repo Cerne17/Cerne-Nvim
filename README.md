@@ -6,7 +6,13 @@
 │   └── plugins
 │       ├── spec1.lua
 │       ├── **
-│       └── spec2.lua
+│       └── specn.lua
+├── cerne
+│   ├── init.lua
+│   └── plugins
+│       ├── config1.lua
+│       ├── **
+│       └── confign.lua
 └── init.lua
 ```
 # 2. Features
@@ -29,7 +35,7 @@
 [x] cmp-nvim-lsp.nvim (completion) +
 [x] cmp-path.nvim (completion) +
 [x] nvim-cmp (completion engine) +
-[ ] which-key.nvim (keybinding manager) +
+[x] which-key.nvim (keybinding manager) +
 [ ] Oil.nvim (file management) ~
 [ ] lualine.nvim (status bar) ~
 [ ] Comment.nvim (shortcut for commenting)

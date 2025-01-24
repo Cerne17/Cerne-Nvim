@@ -21,6 +21,9 @@ require("config.oil")
 -- [[ Status Line Customization ]]
 require("config.statusline")
 
+-- [[ Harpoon Config ]]
+require("config.harpoon")
+
 -- [[ Plugins Related Mappings ]]
 require("config.keymappings")
 

@@ -40,7 +40,7 @@
 [x] which-key.nvim (keybinding manager) +
 [x] Oil.nvim (file management) ~
 [x] lualine.nvim (status bar) ~
-[ ] harpoon.nvim (jumping across buffers)
+[x] harpoon.nvim (jumping across buffers)
 [ ] nvim-autopairs.nvim (auto-closing brackets/quotes)
 [ ] Copilot.nvim (AI assistant)
 [ ] CopilotChat.nvim (AI Chat)

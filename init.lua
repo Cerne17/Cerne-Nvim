@@ -18,6 +18,9 @@ require("config.lsp")
 -- nvim oil-ssh://[username@]hostname[:port]/[path] -> opens nvim on ssh
 require("config.oil")
 
+-- [[ Status Line Customization ]]
+require("config.statusline")
+
 -- [[ Plugins Related Mappings ]]
 require("config.keymappings")
 

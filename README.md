@@ -48,6 +48,7 @@
 [ ] trouble.nvim (better error handling -> editor)
 [ ] Comment.nvim (shortcut for commenting)
 [ ] todo-comments.nvim (comments to enhance development)
+[x] alpha.nvim (Dashboard)
 ```
 ```
 * -> pre-requisites

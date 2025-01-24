@@ -30,6 +30,10 @@ require("config.copilot")
 -- [[ Indentation Config ]]
 require("config.indent")
 
+-- [[ Alpha Config ]]
+-- Dashboard for nvim initialization
+require("config.dashboard")
+
 -- [[ Plugins Related Mappings ]]
 require("config.keymappings")
 

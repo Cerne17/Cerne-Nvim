@@ -24,14 +24,14 @@
 [x] mason.nvim (lsp) +
 [x] lazygit.nvim (git cli) ~
 [x] gitsigns.nvim (git info) +
-[ ] mason-lspconfig.nvim (lsp) +
-[ ] cmp-buffer.nvim (completion) +
-[ ] cmp-nvim-lsp.nvim (completion) +
-[ ] cmp-path.nvim (completion) +
-[ ] nvim-cmp (completion engine) +
+[x] mason-lspconfig.nvim (lsp) +
+[x] cmp-buffer.nvim (completion) +
+[x] cmp-nvim-lsp.nvim (completion) +
+[x] cmp-path.nvim (completion) +
+[x] nvim-cmp (completion engine) +
+[ ] which-key.nvim (keybinding manager) +
 [ ] Oil.nvim (file management) ~
 [ ] lualine.nvim (status bar) ~
-[ ] which-key.nvim (keybinding manager) +
 [ ] Comment.nvim (shortcut for commenting)
 [ ] nvim-autopairs.nvim (auto-closing brackets/quotes)
 [ ] harpoon.nvim (jumping across buffers)

@@ -39,7 +39,7 @@
 [x] nvim-cmp (completion engine) +
 [x] which-key.nvim (keybinding manager) +
 [x] Oil.nvim (file management) ~
-[ ] lualine.nvim (status bar) ~
+[x] lualine.nvim (status bar) ~
 [ ] Comment.nvim (shortcut for commenting)
 [ ] nvim-autopairs.nvim (auto-closing brackets/quotes)
 [ ] harpoon.nvim (jumping across buffers)

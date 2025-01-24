@@ -14,6 +14,9 @@ require("config.gitsigns")
 -- [[ LSP Settings ]]
 require("config.lsp")
 
+-- [[ Plugins Related Mappings ]]
+require("config.keymappings")
+
 -- [[ Plugins Settings Section END ]]
 
 -- [[ Personal Settings ]]

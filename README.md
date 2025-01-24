@@ -41,7 +41,8 @@
 [x] Oil.nvim (file management) ~
 [x] lualine.nvim (status bar) ~
 [x] harpoon.nvim (jumping across buffers)
-[ ] Copilot.nvim (AI assistant)
+[x] Copilot.nvim (AI assistant)
+[x] indentmini.nvim (Adjusts tabstop and shiftwidth)
 [ ] CopilotChat.nvim (AI Chat)
 [ ] nvim-autopairs.nvim (auto-closing brackets/quotes)
 [ ] trouble.nvim (better error handling -> editor)
@@ -56,13 +57,13 @@
 # 3. TODO's
 ## 3.1. Configurations:
 ```
-[ ] telescope *&
+[x] telescope *&
 [ ] general keybindings *
-[ ] which-key *&
-[ ] harpoon *&
-[ ] Oil *&
+[x] which-key *&
+[x] harpoon *&
+[x] Oil *&
 [ ] Copilot *&
-[ ] lazygit *
+[x] lazygit *
 [ ] cmp *
 ```
 ```

@@ -16,6 +16,7 @@ wk.add({
 	{ "<leader>fb", telescope.buffers, desc = "Find in Buffers", mode = "n" },
 	{ "<leader>fg", telescope.live_grep, desc = "Find with Live Grep", mode = "n" },
 	{ "<leader>fc", telescope.colorscheme, desc = "Find Colorscheme", mode = "n" },
+	{ "<leader>fd", telescope.diagnostics, desc = "Find Diagnostics", mode = "n" },
 	{ "<leader>g", group = "git" }, -- creates the git grouping
 	{ "<leader>gg", "<cmd>LazyGit<CR>", desc = "Opens LazyGit", mode = "n" },
 	{ "<leader>p", group = "Project" }, -- creates the project grouping

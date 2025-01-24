@@ -27,6 +27,9 @@ require("config.harpoon")
 -- [[ Copilot Config ]]
 require("config.copilot")
 
+-- [[ Indentation Config ]]
+require("config.indent")
+
 -- [[ Plugins Related Mappings ]]
 require("config.keymappings")
 

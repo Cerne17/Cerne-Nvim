@@ -24,6 +24,9 @@ require("config.statusline")
 -- [[ Harpoon Config ]]
 require("config.harpoon")
 
+-- [[ Copilot Config ]]
+require("config.copilot")
+
 -- [[ Plugins Related Mappings ]]
 require("config.keymappings")
 

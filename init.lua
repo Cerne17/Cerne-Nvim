@@ -14,6 +14,10 @@ require("config.gitsigns")
 -- [[ LSP Settings ]]
 require("config.lsp")
 
+-- [[ Oil Navigation Settings ]]
+-- nvim oil-ssh://[username@]hostname[:port]/[path] -> opens nvim on ssh
+require("config.oil")
+
 -- [[ Plugins Related Mappings ]]
 require("config.keymappings")
 

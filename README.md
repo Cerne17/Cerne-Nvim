@@ -38,7 +38,7 @@
 [x] cmp-path.nvim (completion) +
 [x] nvim-cmp (completion engine) +
 [x] which-key.nvim (keybinding manager) +
-[ ] Oil.nvim (file management) ~
+[x] Oil.nvim (file management) ~
 [ ] lualine.nvim (status bar) ~
 [ ] Comment.nvim (shortcut for commenting)
 [ ] nvim-autopairs.nvim (auto-closing brackets/quotes)

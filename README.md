@@ -1,18 +1,20 @@
 # 1. Code Structure
 ```
 ~/.config/nvim
-├── config
-│   ├── lazy.lua
-│   └── plugins
-│       ├── spec1.lua
-│       ├── **
-│       └── specn.lua
 ├── cerne
 │   ├── init.lua
-│   └── plugins
-│       ├── config1.lua
-│       ├── **
-│       └── confign.lua
+│   ├── spec1.lua
+│   ├── **
+│   └── spec2.lua
+├── config
+│   ├── lazy.lua
+│   ├── spec1.lua
+│   ├── **
+│   └── spec2.lua
+├── plugins
+│   ├── plugin1.lua
+│   ├── **
+│   └── plugin2.lua
 └── init.lua
 ```
 # 2. Features

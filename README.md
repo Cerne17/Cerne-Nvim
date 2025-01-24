@@ -43,7 +43,10 @@
 [ ] Comment.nvim (shortcut for commenting)
 [ ] nvim-autopairs.nvim (auto-closing brackets/quotes)
 [ ] harpoon.nvim (jumping across buffers)
-[ ] Copilot.nvim (AI assistant/chat)
+[ ] Copilot.nvim (AI assistant)
+[ ] CopilotChat.nvim (AI Chat)
+[ ] trouble.nvim (better error handling -> editor)
+[ ] todo-comments.nvim (comments to enhance development)
 ```
 ```
 * -> pre-requisites

@@ -49,6 +49,7 @@
 [ ] Comment.nvim (shortcut for commenting)
 [ ] todo-comments.nvim (comments to enhance development)
 [x] alpha.nvim (Dashboard)
+[x] vimbegood.nvim (training vim-motions)
 ```
 ```
 * -> pre-requisites

@@ -17,10 +17,13 @@ wk.add({
 	{ "<leader>fg", telescope.live_grep, desc = "Find with Live Grep", mode = "n" },
 	{ "<leader>fc", telescope.colorscheme, desc = "Find Colorscheme", mode = "n" },
 	{ "<leader>fd", telescope.diagnostics, desc = "Find Diagnostics", mode = "n" },
+  -- [[ Git ]]
 	{ "<leader>g", group = "git" }, -- creates the git grouping
 	{ "<leader>gg", "<cmd>LazyGit<CR>", desc = "Opens LazyGit", mode = "n" },
+  -- [[ Oil ]]
 	{ "<leader>p", group = "Project" }, -- creates the project grouping
 	{ "<leader>pv", "<cmd>Oil<CR>", desc = "Project View", mode = "n" },
+  -- [[ Harpoon ]]
 	{ "<leader>h", group = "Harpoon"}, -- creates harpoon grouping
 	{ "<leader>ha", function() harpoon:list():add() end, desc = "Harpoon add", mode = {"n", "v"} },
 	{ "<leader>hz", function() harpoon:list():select(1) end, desc = "First file", mode = {"n", "v"} },
@@ -30,4 +33,8 @@ wk.add({
 	{ "<leader>he", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Opens harpoon list", mode = {"n", "v"} },
 	{ "<C-S-P>", function() harpoon:list():prev() end, desc = "Previous harpoon file", mode = {"n", "v" } },
 	{ "<C-S-N>", function() harpoon:list():next() end, desc = "Next harpoon file", mode = {"n", "v" } },
+  { "<leader>o", group = "Obsidian" }, -- creates the Obsidian grouping
+  { "<leader>ogf", desc = "Follows links", mode = { "n", "v" }},
+  { "<leader>oc", desc = "Toggles checkbox", mode = { "n", "v" }},
+  { "<leader>oo", "<cmd>ObsidianOpen<CR>", desc = "Opens Obsidian", mode = { "n", "v" }},
 })

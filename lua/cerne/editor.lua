@@ -58,3 +58,6 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 
 -- Clear search highlights when pressing <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
+-- Sets conceallevel for obsidian.nvim
+opt.conceallevel = 2

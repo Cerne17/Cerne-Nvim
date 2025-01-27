@@ -60,13 +60,13 @@
 ## 3.1. Configurations:
 ```
 [x] telescope *&
-[ ] general keybindings *
+[x] general keybindings *
 [x] which-key *&
 [x] harpoon *&
 [x] Oil *&
 [ ] Copilot *&
 [x] lazygit *
-[ ] cmp *
+[x] cmp *
 ```
 ```
 * -> key-bindings

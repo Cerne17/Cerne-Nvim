@@ -3,6 +3,10 @@ vim.g.maplocalleader = ' '
 
 require("config.lazy")
 
+-- [[ Personal Settings ]]
+-- Not related to any plugins
+require("cerne.init")
+
 -- [[ Plugins Settings Section START ]]
 
 -- [[ Autocompletion Settings ]]
@@ -34,12 +38,12 @@ require("config.indent")
 -- Dashboard for nvim initialization
 require("config.dashboard")
 
+-- [[ Obsidian Note Taking ]]
+-- require("config.obsidian")
+
 -- [[ Plugins Related Mappings ]]
 require("config.keymappings")
 
 -- [[ Plugins Settings Section END ]]
 
--- [[ Personal Settings ]]
--- Not related to any plugins
-require("cerne.init")
 

@@ -1,0 +1,8 @@
+-- require "config.snippets.c"
+-- require "config.snippets.cpp"
+require "config.snippets.go"
+require "config.snippets.javascript"
+require "config.snippets.lua"
+require "config.snippets.python"
+-- require "config.snippets.sql"
+require "config.snippets.typescript"

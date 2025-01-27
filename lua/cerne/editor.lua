@@ -41,3 +41,20 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	group = highlight_group,
 	pattern = '*',
 })
+
+-- Fixes searched terms always being highlighted
+-- Clear search highlights when pressing <Esc> in normal mode
+vim.api.nvim_create_autocmd("InsertEnter", {
+    callback = function()
+        vim.opt.hlsearch = false
+    end,
+})
+
+vim.api.nvim_create_autocmd("InsertLeave", {
+    callback = function()
+        vim.opt.hlsearch = true
+    end,
+})
+
+-- Clear search highlights when pressing <Esc> in normal mode
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")

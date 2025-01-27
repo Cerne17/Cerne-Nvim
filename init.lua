@@ -6,7 +6,7 @@ require("config.lazy")
 -- [[ Plugins Settings Section START ]]
 
 -- [[ Autocompletion Settings ]]
-require("config.cmp")
+-- require("config.cmp")
 
 -- [[ Gitsigns Settings ]]
 require("config.gitsigns")

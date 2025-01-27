@@ -72,3 +72,8 @@
 * -> key-bindings
 & -> configurations
 ```
+
+# 4. Important Links
+For the cmp configuration, I used basically the [gmr458's configuration](https://github.com/gmr458) file. His
+nvim configuration can be found [here](https://github.com/gmr458/nvim). And the
+cmp config can be found [here](https://github.com/gmr458/nvim/blob/main/lua/gmr/plugins/cmp.lua)

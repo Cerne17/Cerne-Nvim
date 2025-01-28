@@ -46,12 +46,13 @@
 - [ ] CopilotChat.nvim (AI Chat)
 - [ ] nvim-autopairs.nvim (auto-closing brackets/quotes)
 - [ ] trouble.nvim (better error handling -> editor)
-- [ ] Comment.nvim (shortcut for commenting)
-- [ ] todo-comments.nvim (comments to enhance development)
+- [x] Comment.nvim (shortcut for commenting)
+- [x] todo-comments.nvim (comments to enhance development)
 - [x] alpha.nvim (Dashboard)
 - [x] vimbegood.nvim (training vim-motions)
 - [x] obsidian.nvim (note-taking)
 - [x] peek.nvim (markdown previewer)
+- [ ] undotree.nvim (better undo history and time tree)
 
 ```
 * -> pre-requisites

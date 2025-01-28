@@ -50,8 +50,8 @@
 - [ ] todo-comments.nvim (comments to enhance development)
 - [x] alpha.nvim (Dashboard)
 - [x] vimbegood.nvim (training vim-motions)
-- [ ] obsidian.nvim (note-taking)
-- [ ] markdown-preview.nvim
+- [x] obsidian.nvim (note-taking)
+- [x] peek.nvim (markdown previewer)
 
 ```
 * -> pre-requisites
@@ -68,7 +68,7 @@
 - [ ] Copilot *&
 - [x] lazygit *
 - [x] cmp *
-- [ ] Fix cmp with Obsidian.nvim on Vaults !!!
+- [x] Fix cmp with Obsidian.nvim on Vaults !!!
 ```
 * -> key-bindings
 & -> configurations

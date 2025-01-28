@@ -34,6 +34,9 @@ require("config.copilot")
 -- [[ Indentation Config ]]
 require("config.indent")
 
+-- [[ Peek Config ]]
+require("config.peek")
+
 -- [[ Alpha Config ]]
 -- Dashboard for nvim initialization
 require("config.dashboard")

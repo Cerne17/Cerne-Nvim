@@ -36,7 +36,8 @@ wk.add({
   -- [[ Obsidian ]]
   { "<leader>o", group = "Obsidian" }, -- creates the Obsidian grouping
   { "<leader>ogf", desc = "Follows links", mode = { "n", "v" } },
-  { "<leader>oc", desc = "Toggles checkbox", mode = { "n", "v" } },
+  { "<leader>ch", desc = "Toggles checkbox", mode = { "n", "v" } },
   { "<leader>oo", "<cmd>ObsidianOpen<CR>", desc = "Opens Obsidian", mode = { "n", "v" } },
   { "<leader>os", "<cmd>ObsidianSearch<CR>", desc = "Searches Notes with Grep", mode = "n" },
+  { "<leader>on", "<cmd>ObsidianNew<CR>", desc = "Creates a new Note", mode = "n" },
 })

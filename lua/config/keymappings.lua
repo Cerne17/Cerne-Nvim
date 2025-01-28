@@ -33,8 +33,10 @@ wk.add({
 	{ "<leader>he", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Opens harpoon list", mode = {"n", "v"} },
 	{ "<C-S-P>", function() harpoon:list():prev() end, desc = "Previous harpoon file", mode = {"n", "v" } },
 	{ "<C-S-N>", function() harpoon:list():next() end, desc = "Next harpoon file", mode = {"n", "v" } },
+  -- [[ Obsidian ]]
   { "<leader>o", group = "Obsidian" }, -- creates the Obsidian grouping
-  { "<leader>ogf", desc = "Follows links", mode = { "n", "v" }},
-  { "<leader>oc", desc = "Toggles checkbox", mode = { "n", "v" }},
-  { "<leader>oo", "<cmd>ObsidianOpen<CR>", desc = "Opens Obsidian", mode = { "n", "v" }},
+  { "<leader>ogf", desc = "Follows links", mode = { "n", "v" } },
+  { "<leader>oc", desc = "Toggles checkbox", mode = { "n", "v" } },
+  { "<leader>oo", "<cmd>ObsidianOpen<CR>", desc = "Opens Obsidian", mode = { "n", "v" } },
+  { "<leader>os", "<cmd>ObsidianSearch<CR>", desc = "Searches Notes with Grep", mode = "n" },
 })

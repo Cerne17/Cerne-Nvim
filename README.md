@@ -44,7 +44,7 @@
 - [x] Copilot.nvim (AI assistant)
 - [x] indentmini.nvim (Adjusts tabstop and shiftwidth)
 - [ ] CopilotChat.nvim (AI Chat)
-- [ ] nvim-autopairs.nvim (auto-closing brackets/quotes)
+- [x] nvim-autopairs.nvim (auto-closing brackets/quotes)
 - [ ] trouble.nvim (better error handling -> editor)
 - [x] Comment.nvim (shortcut for commenting)
 - [x] todo-comments.nvim (comments to enhance development)

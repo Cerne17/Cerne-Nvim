@@ -103,7 +103,8 @@ return {
           }, {}),
       }
 
-      require 'lua.config.snippets.init'
+      -- require 'lua.config.snippets.init'
+      require 'config.snippets.init'
 
       luasnip.filetype_extend('javascriptreact', { 'javascript' })
       luasnip.filetype_extend('typescriptreact', { 'typescript' })

@@ -1,15 +1,9 @@
 return {
   -- Ensure language servers and tools are installed via Mason
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
-        "pyright",
-        "ruff",
-        "lua-language-server",
-        "typescript-language-server",
-        "eslint-lsp",
-        "stylua",
         "prettier",
       },
     },

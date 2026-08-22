@@ -5,6 +5,7 @@ return {
     opts = {
       ensure_installed = {
         "prettier",
+        "clang-format",
       },
     },
   },
@@ -38,6 +39,24 @@ return {
         -- Lua: lazydev.nvim provides Neovim API types automatically
         lua_ls = {},
 
+        -- C / C++: clangd (auto-installed by mason-lspconfig)
+        clangd = {
+          cmd = {
+            "clangd",
+            "--background-index",
+            "--clang-tidy",
+            "--header-insertion=iwyu",
+            "--completion-style=detailed",
+            "--function-arg-placeholders",
+            "--fallback-style=llvm",
+          },
+          init_options = {
+            usePlaceholders = true,
+            completeUnimported = true,
+            clangdFileStatus = true,
+          },
+        },
+
         -- JavaScript / TypeScript
         ts_ls = {},
         eslint = {
@@ -55,6 +74,8 @@ return {
     opts = {
       formatters_by_ft = {
         python = { "ruff_format" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
         lua = { "stylua" },
         javascript = { "prettier" },
         typescript = { "prettier" },

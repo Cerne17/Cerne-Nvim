@@ -19,3 +19,4 @@
 |    7    | telescope     | Fuzzy Finder      | Searches Files on the File Tree      | https://github.com/nvim-telescope/telescope.nvim |
 |    8    | harpoon       | Tabs Manager      | Easily work with multiple files      |  |
 |    9    | lsp-colors    | Highlighting      | Uses LSP to customize the highlight  | https://github.com/folke/lsp-colors.nvim |
+|   10    | clangd        | LSP               | C/C++ language server for completion, type hints, and diagnostics | https://github.com/clangd/clangd |

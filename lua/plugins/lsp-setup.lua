@@ -62,6 +62,7 @@ require('mason-lspconfig').setup()
 local servers = {
   tsserver = {},
   jedi_language_server = {},
+  clangd = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -115,6 +116,22 @@ mason_lspconfig.setup_handlers {
       on_attach = on_attach,
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
+    }
+  end,
+  -- C/C++: clangd with clang-tidy, IWYU header insertion, and arg placeholders
+  ['clangd'] = function()
+    require('lspconfig').clangd.setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      cmd = {
+        'clangd',
+        '--background-index',
+        '--clang-tidy',
+        '--header-insertion=iwyu',
+        '--completion-style=detailed',
+        '--function-arg-placeholders',
+        '--fallback-style=llvm',
+      },
     }
   end,
 }

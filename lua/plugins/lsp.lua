@@ -24,12 +24,19 @@ return {
       servers = {
         -- Python: type checking via pyright, linting/formatting via ruff
         pyright = {
+          before_init = function(_, config)
+            local venv = vim.env.VIRTUAL_ENV
+            if venv then
+              config.settings.python.pythonPath = venv .. "/bin/python"
+            end
+          end,
           settings = {
             python = {
               analysis = {
                 typeCheckingMode = "basic",
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
+                diagnosticMode = "workspace",
               },
             },
           },

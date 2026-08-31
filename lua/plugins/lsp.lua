@@ -5,6 +5,7 @@ return {
     opts = {
       ensure_installed = {
         "prettier",
+        "clang-format",
       },
     },
   },
@@ -23,12 +24,19 @@ return {
       servers = {
         -- Python: type checking via pyright, linting/formatting via ruff
         pyright = {
+          before_init = function(_, config)
+            local venv = vim.env.VIRTUAL_ENV
+            if venv then
+              config.settings.python.pythonPath = venv .. "/bin/python"
+            end
+          end,
           settings = {
             python = {
               analysis = {
                 typeCheckingMode = "basic",
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
+                diagnosticMode = "workspace",
               },
             },
           },
@@ -37,6 +45,24 @@ return {
 
         -- Lua: lazydev.nvim provides Neovim API types automatically
         lua_ls = {},
+
+        -- C / C++: clangd (auto-installed by mason-lspconfig)
+        clangd = {
+          cmd = {
+            "clangd",
+            "--background-index",
+            "--clang-tidy",
+            "--header-insertion=iwyu",
+            "--completion-style=detailed",
+            "--function-arg-placeholders",
+            "--fallback-style=llvm",
+          },
+          init_options = {
+            usePlaceholders = true,
+            completeUnimported = true,
+            clangdFileStatus = true,
+          },
+        },
 
         -- JavaScript / TypeScript
         ts_ls = {},
@@ -55,6 +81,8 @@ return {
     opts = {
       formatters_by_ft = {
         python = { "ruff_format" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
         lua = { "stylua" },
         javascript = { "prettier" },
         typescript = { "prettier" },

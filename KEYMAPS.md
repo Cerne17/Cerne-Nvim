@@ -41,7 +41,8 @@
 | `<leader>fs` | LSP document symbols | `lua/plugins/telescope.lua` |
 | `<leader>fd` | Diagnostics | `lua/plugins/telescope.lua` |
 | `<leader>fk` | Browse all keymaps | `lua/plugins/telescope.lua` |
-| `<leader>uC` | Colorscheme picker | `lua/plugins/telescope.lua` |
+| `<leader>uC` | Colorscheme picker (explicit pick overrides system-following, sticky) | `lua/plugins/telescope.lua` |
+| `:CerneThemeAuto` | Clear an explicit colorscheme pick, resume following macOS appearance | `lua/plugins/colorschemes.lua` |
 
 ### Git
 | Key | Action | File |

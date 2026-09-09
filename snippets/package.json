@@ -1,0 +1,11 @@
+{
+  "name": "cerne-oop-snippets",
+  "contributes": {
+    "snippets": [
+      { "language": "cpp", "path": "./cpp.json" },
+      { "language": "python", "path": "./python.json" },
+      { "language": ["javascript", "javascriptreact"], "path": "./javascript.json" },
+      { "language": ["typescript", "typescriptreact"], "path": "./typescript.json" }
+    ]
+  }
+}

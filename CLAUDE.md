@@ -25,7 +25,7 @@ This is a [LazyVim](https://lazyvim.github.io) v8 config built on [lazy.nvim](ht
 - **File explorer:** oil.nvim on `<leader>pv` — NOT netrw. Configured in `lua/plugins/oil.lua`; shows hidden files by default.
 - **noice.nvim disabled:** Replaced with plain cmdline (`cmdheight=1`). lualine is fully replaced (not extended) in `lua/plugins/ui.lua` to avoid noice components.
 - **bufferline disabled:** Navigation via Harpoon 2 (`lua/plugins/harpoon.lua`).
-- **Dashboard disabled:** snacks dashboard is off; Neovim opens to an empty buffer.
+- **Dashboard:** snacks dashboard is enabled with a cerne.pro-branded header/keymenu, configured in `lua/plugins/ui.lua`. Its highlight groups (`SnacksDashboard*`) are pinned to the brand palette in `lua/config/autocmds.lua` regardless of active colorscheme, so switching themes via `<leader>uC` doesn't drift the startup page off-brand.
 - **Lazygit:** kdheepak/lazygit.nvim on `<leader>gg`; snacks.lazygit is disabled to avoid keymap conflict.
 
 **LSP / Mason / Treesitter:** Configured in `lua/plugins/lsp.lua`. LSP servers (pyright, ruff, lua_ls, ts_ls, eslint) are auto-installed by mason-lspconfig when detected in the `servers` table — do NOT add them to mason's `ensure_installed` or they will double-install and crash. Mason's `ensure_installed` is only for standalone tools not tied to an LSP server (currently: prettier). Inlay hints are globally enabled. conform.nvim handles formatting; nvim-lint handles ruff linting for Python (eslint diagnostics come from the eslint LSP).

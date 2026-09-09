@@ -5,12 +5,36 @@ return {
   -- Disable tabline
   { "akinsho/bufferline.nvim", enabled = false },
 
-  -- Snacks: disable dashboard and lazygit (using kdheepak/lazygit.nvim)
+  -- Snacks: cerne.pro branded dashboard, lazygit disabled (using kdheepak/lazygit.nvim)
   {
     "folke/snacks.nvim",
     opts = {
-      dashboard = { enabled = false },
       lazygit = { enabled = false },
+      dashboard = {
+        enabled = true,
+        preset = {
+          header = [[
+    ◯  ◎  ◉  ◎  ◯
+ _______ _______  ___
+/ __/ -_) __/ _ \/ -_)
+\__/\__/_/ /_//_/\__/
+  // core, unshaken]],
+          ---@type snacks.dashboard.Item[]
+          keys = {
+            { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
+            { icon = " ", key = "g", desc = "Find Text", action = ":Telescope live_grep" },
+            { icon = " ", key = "r", desc = "Recent Files", action = ":Telescope oldfiles" },
+            { icon = " ", key = "e", desc = "Explorer", action = ":Oil" },
+            { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
+        },
+        sections = {
+          { section = "header", padding = 1 },
+          { section = "keys" },
+          { section = "startup" },
+        },
+      },
     },
   },
 

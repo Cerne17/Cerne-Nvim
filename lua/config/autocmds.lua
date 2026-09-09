@@ -32,3 +32,17 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   callback = set_dashboard_highlights,
 })
 set_dashboard_highlights()
+
+-- Same stale-cwd guard as init.lua's startup check (see there for the
+-- full explanation), re-run on every :cd/:lcd/:tcd. init.lua only covers
+-- the directory nvim was launched into; this catches one becoming
+-- invalid afterwards (e.g. `:cd` into a path a script then deletes).
+vim.api.nvim_create_autocmd("DirChanged", {
+  group = vim.api.nvim_create_augroup("cerne_cwd_guard", { clear = true }),
+  callback = function()
+    if not vim.uv.fs_realpath(".") then
+      vim.notify("cwd no longer exists, falling back to $HOME", vim.log.levels.WARN)
+      vim.cmd.cd(vim.env.HOME)
+    end
+  end,
+})

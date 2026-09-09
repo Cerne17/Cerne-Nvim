@@ -25,7 +25,17 @@ return {
       { "<leader>4", function() require("harpoon"):list():select(4) end, desc = "Harpoon File 4" },
     },
     config = function()
-      require("harpoon"):setup()
+      require("harpoon"):setup({
+        settings = {
+          -- Default key is `vim.loop.cwd()` used directly as a table
+          -- index for per-project mark storage — a stale/deleted cwd
+          -- returns nil there and harpoon crashes with "table index is
+          -- nil". Same guard pattern as Telescope's cwd fallback.
+          key = function()
+            return vim.uv.cwd() or vim.env.HOME
+          end,
+        },
+      })
     end,
   },
 }

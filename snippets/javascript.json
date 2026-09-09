@@ -1,0 +1,122 @@
+{
+  "Class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:ClassName} {",
+      "\tconstructor(${2:args}) {",
+      "\t\t${0}",
+      "\t}",
+      "}"
+    ],
+    "description": "Basic ES6 class scaffold"
+  },
+  "Singleton": {
+    "prefix": "singleton",
+    "body": [
+      "class ${1:ClassName} {",
+      "\tstatic #instance;",
+      "",
+      "\tconstructor() {",
+      "\t\tif (${1:ClassName}.#instance) {",
+      "\t\t\treturn ${1:ClassName}.#instance;",
+      "\t\t}",
+      "\t\t${1:ClassName}.#instance = this;",
+      "\t\t${0}",
+      "\t}",
+      "",
+      "\tstatic getInstance() {",
+      "\t\treturn ${1:ClassName}.#instance ?? new ${1:ClassName}();",
+      "\t}",
+      "}"
+    ],
+    "description": "Singleton via private static field"
+  },
+  "Factory Method": {
+    "prefix": "factory",
+    "body": [
+      "class ${1:Product} {",
+      "\t${2:operation}() {",
+      "\t\tthrow new Error('Not implemented');",
+      "\t}",
+      "}",
+      "",
+      "class ${3:ConcreteProduct} extends ${1:Product} {",
+      "\t${2:operation}() {",
+      "\t\t${0:// implementation}",
+      "\t}",
+      "}",
+      "",
+      "class ${4:Factory} {",
+      "\tstatic create() {",
+      "\t\treturn new ${3:ConcreteProduct}();",
+      "\t}",
+      "}"
+    ],
+    "description": "Factory method pattern"
+  },
+  "Observer": {
+    "prefix": "observer",
+    "body": [
+      "class ${1:Subject} {",
+      "\t#observers = [];",
+      "",
+      "\tsubscribe(observer) {",
+      "\t\tthis.#observers.push(observer);",
+      "\t}",
+      "",
+      "\tnotify(${2:event}) {",
+      "\t\tthis.#observers.forEach((observer) => observer(${2:event}));",
+      "\t\t${0}",
+      "\t}",
+      "}"
+    ],
+    "description": "Observer pattern (subscribe/notify)"
+  },
+  "Strategy": {
+    "prefix": "strategy",
+    "body": [
+      "class ${1:Context} {",
+      "\tconstructor(strategy) {",
+      "\t\tthis.strategy = strategy;",
+      "\t}",
+      "",
+      "\tsetStrategy(strategy) {",
+      "\t\tthis.strategy = strategy;",
+      "\t}",
+      "",
+      "\texecute(${2:args}) {",
+      "\t\treturn this.strategy(${2:args});",
+      "\t}",
+      "}"
+    ],
+    "description": "Strategy pattern"
+  },
+  "Decorator": {
+    "prefix": "decorator",
+    "body": [
+      "class ${1:Component} {",
+      "\toperation() {",
+      "\t\tthrow new Error('Not implemented');",
+      "\t}",
+      "}",
+      "",
+      "class ${2:ConcreteComponent} extends ${1:Component} {",
+      "\toperation() {",
+      "\t\treturn '${3:base}';",
+      "\t}",
+      "}",
+      "",
+      "class ${4:Decorator} extends ${1:Component} {",
+      "\tconstructor(component) {",
+      "\t\tsuper();",
+      "\t\tthis.component = component;",
+      "\t}",
+      "",
+      "\toperation() {",
+      "\t\treturn this.component.operation() + ${0:' + extra'};",
+      "\t}",
+      "}"
+    ],
+    "description": "Decorator pattern"
+  }
+}

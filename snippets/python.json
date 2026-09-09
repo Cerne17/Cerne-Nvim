@@ -1,0 +1,147 @@
+{
+  "Class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:ClassName}:",
+      "\tdef __init__(self, ${2:args}):",
+      "\t\t${0:pass}"
+    ],
+    "description": "Basic class scaffold"
+  },
+  "Dataclass": {
+    "prefix": "dataclass",
+    "body": [
+      "from dataclasses import dataclass",
+      "",
+      "",
+      "@dataclass",
+      "class ${1:ClassName}:",
+      "\t${2:field}: ${3:type}",
+      "\t${0}"
+    ],
+    "description": "Dataclass"
+  },
+  "Singleton": {
+    "prefix": "singleton",
+    "body": [
+      "class ${1:SingletonMeta}(type):",
+      "\t_instances = {}",
+      "",
+      "\tdef __call__(cls, *args, **kwargs):",
+      "\t\tif cls not in cls._instances:",
+      "\t\t\tcls._instances[cls] = super().__call__(*args, **kwargs)",
+      "\t\treturn cls._instances[cls]",
+      "",
+      "",
+      "class ${2:ClassName}(metaclass=${1:SingletonMeta}):",
+      "\tdef __init__(self):",
+      "\t\t${0:pass}"
+    ],
+    "description": "Singleton via metaclass"
+  },
+  "Abstract Base Class": {
+    "prefix": "abstract",
+    "body": [
+      "from abc import ABC, abstractmethod",
+      "",
+      "",
+      "class ${1:IInterfaceName}(ABC):",
+      "\t@abstractmethod",
+      "\tdef ${2:method_name}(self, ${3:args}):",
+      "\t\t${0:...}"
+    ],
+    "description": "Abstract base class / interface"
+  },
+  "Factory Method": {
+    "prefix": "factory",
+    "body": [
+      "from abc import ABC, abstractmethod",
+      "",
+      "",
+      "class ${1:Product}(ABC):",
+      "\t@abstractmethod",
+      "\tdef ${2:operation}(self):",
+      "\t\t...",
+      "",
+      "",
+      "class ${3:ConcreteProduct}(${1:Product}):",
+      "\tdef ${2:operation}(self):",
+      "\t\t${0:...}",
+      "",
+      "",
+      "class ${4:Factory}:",
+      "\t@staticmethod",
+      "\tdef create() -> ${1:Product}:",
+      "\t\treturn ${3:ConcreteProduct}()"
+    ],
+    "description": "Factory method pattern"
+  },
+  "Observer": {
+    "prefix": "observer",
+    "body": [
+      "class ${1:Observer}:",
+      "\tdef update(self, ${2:event}):",
+      "\t\traise NotImplementedError",
+      "",
+      "",
+      "class ${3:Subject}:",
+      "\tdef __init__(self):",
+      "\t\tself._observers: list[${1:Observer}] = []",
+      "",
+      "\tdef attach(self, observer: ${1:Observer}):",
+      "\t\tself._observers.append(observer)",
+      "",
+      "\tdef notify(self, ${2:event}):",
+      "\t\tfor observer in self._observers:",
+      "\t\t\tobserver.update(${2:event})",
+      "\t\t\t${0}"
+    ],
+    "description": "Observer pattern (Subject/Observer)"
+  },
+  "Strategy": {
+    "prefix": "strategy",
+    "body": [
+      "from abc import ABC, abstractmethod",
+      "",
+      "",
+      "class ${1:Strategy}(ABC):",
+      "\t@abstractmethod",
+      "\tdef execute(self, ${2:args}):",
+      "\t\t...",
+      "",
+      "",
+      "class ${3:Context}:",
+      "\tdef __init__(self, strategy: ${1:Strategy}):",
+      "\t\tself._strategy = strategy",
+      "",
+      "\tdef set_strategy(self, strategy: ${1:Strategy}):",
+      "\t\tself._strategy = strategy",
+      "",
+      "\tdef run(self, ${2:args}):",
+      "\t\treturn self._strategy.execute(${2:args})"
+    ],
+    "description": "Strategy pattern"
+  },
+  "Decorator Pattern": {
+    "prefix": "decoratorclass",
+    "body": [
+      "class ${1:Component}:",
+      "\tdef operation(self) -> str:",
+      "\t\traise NotImplementedError",
+      "",
+      "",
+      "class ${2:ConcreteComponent}(${1:Component}):",
+      "\tdef operation(self) -> str:",
+      "\t\treturn \"${3:base}\"",
+      "",
+      "",
+      "class ${4:Decorator}(${1:Component}):",
+      "\tdef __init__(self, component: ${1:Component}):",
+      "\t\tself._component = component",
+      "",
+      "\tdef operation(self) -> str:",
+      "\t\treturn self._component.operation() + ${0:\" + extra\"}"
+    ],
+    "description": "Decorator pattern (structural, not @decorator syntax)"
+  }
+}

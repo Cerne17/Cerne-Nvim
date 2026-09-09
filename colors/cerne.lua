@@ -176,9 +176,15 @@ local groups = {
   -- oil.nvim (directories/files render through Directory/Normal already)
   OilDir = { fg = c.glow, bold = true },
 
-  -- Snacks dashboard header/mark, in case it renders before the
-  -- brand-pin autocmd in config/autocmds.lua runs
+  -- Snacks dashboard (config/autocmds.lua only brands third-party
+  -- colorschemes — these are owned here so cerne's dashboard is correct
+  -- on its own, without depending on that fallback)
   SnacksDashboardHeader = { fg = c.heartwood, bold = true },
+  SnacksDashboardDesc = { fg = c.text },
+  SnacksDashboardKey = { fg = c.glow, bold = true },
+  SnacksDashboardIcon = { fg = c.sapwood },
+  SnacksDashboardFooter = { fg = c.text_muted, italic = true },
+  SnacksDashboardSpecial = { fg = c.glow },
 }
 
 for group, opts in pairs(groups) do

@@ -1,4 +1,11 @@
 return {
+  -- cerne.pro brand palette (dark: cerne, light: cerne-light)
+  {
+    "Cerne17/cerne.nvim",
+    lazy = true,
+    priority = 1000,
+  },
+
   -- Rose Pine (dark: main/moon, light: dawn)
   {
     "rose-pine/neovim",
@@ -83,12 +90,12 @@ return {
 
   -- Default colorscheme on startup
   -- Switch at runtime with <leader>uC (Telescope colorscheme picker, live preview)
-  -- Dark options:  catppuccin-mocha, catppuccin-frappe, catppuccin-macchiato,
+  -- Dark options:  cerne, catppuccin-mocha, catppuccin-frappe, catppuccin-macchiato,
   --                rose-pine, rose-pine-moon, tokyonight, tokyonight-storm, tokyonight-night,
   --                gruvbox, kanagawa, kanagawa-wave, kanagawa-dragon,
   --                nightfox, duskfox, nordfox, terafox, carbonfox,
   --                everforest, onedark, nord, github_dark, github_dimmed
-  -- Light options: catppuccin-latte, rose-pine-dawn, tokyonight-day, gruvbox (background=light),
+  -- Light options: cerne-light, catppuccin-latte, rose-pine-dawn, tokyonight-day, gruvbox (background=light),
   --                kanagawa-lotus, dayfox, dawnfox, everforest (background=light),
   --                onelight, github_light
   {

@@ -12,12 +12,25 @@
 ### Harpoon
 | Key | Action | File |
 |-----|--------|------|
-| `<leader>a` | Add file to Harpoon | `lua/plugins/harpoon.lua` |
+| `<leader>ha` | Add file to Harpoon | `lua/plugins/harpoon.lua` |
 | `<C-e>` | Harpoon quick menu | `lua/plugins/harpoon.lua` |
 | `<leader>1` | Jump to Harpoon mark 1 | `lua/plugins/harpoon.lua` |
 | `<leader>2` | Jump to Harpoon mark 2 | `lua/plugins/harpoon.lua` |
 | `<leader>3` | Jump to Harpoon mark 3 | `lua/plugins/harpoon.lua` |
 | `<leader>4` | Jump to Harpoon mark 4 | `lua/plugins/harpoon.lua` |
+
+### Claude Code
+| Key | Action | Mode | File |
+|-----|--------|------|------|
+| `<leader>ac` | Toggle Claude terminal | Normal | `lua/plugins/claude.lua` |
+| `<leader>af` | Focus Claude terminal | Normal | `lua/plugins/claude.lua` |
+| `<leader>ar` | Resume previous session | Normal | `lua/plugins/claude.lua` |
+| `<leader>aC` | Continue conversation | Normal | `lua/plugins/claude.lua` |
+| `<leader>am` | Select model | Normal | `lua/plugins/claude.lua` |
+| `<leader>ab` | Add current buffer to context | Normal | `lua/plugins/claude.lua` |
+| `<leader>as` | Send selection / add file (in oil) | Visual / oil | `lua/plugins/claude.lua` |
+| `<leader>aa` | Accept diff | Normal | `lua/plugins/claude.lua` |
+| `<leader>ad` | Deny diff | Normal | `lua/plugins/claude.lua` |
 
 ### Telescope
 | Key | Action | File |
@@ -54,8 +67,19 @@
 | `lewis6991/gitsigns.nvim` | Gutter git signs + current line blame | `lua/plugins/git.lua` |
 | `mistricky/codesnap.nvim` | Code screenshots to clipboard | `lua/plugins/codesnap.lua` |
 | `nvim-lualine/lualine.nvim` | Status line | `lua/plugins/ui.lua` |
-| `catppuccin/nvim` | Default colorscheme (mocha) | `lua/plugins/colorschemes.lua` |
+| `folke/snacks.nvim` (dashboard) | Branded startup dashboard | `lua/plugins/ui.lua` |
+| `coder/claudecode.nvim` | Claude Code IDE integration | `lua/plugins/claude.lua` |
+| `colors/cerne.lua` | Default colorscheme, cerne.pro brand tokens | `colors/cerne.lua` |
+| `catppuccin/nvim` | Alternative colorscheme | `lua/plugins/colorschemes.lua` |
 | `rose-pine/neovim` | Alternative colorscheme | `lua/plugins/colorschemes.lua` |
+| `folke/tokyonight.nvim` | Alternative colorscheme | `lua/plugins/colorschemes.lua` |
+| `ellisonleao/gruvbox.nvim` | Alternative colorscheme | `lua/plugins/colorschemes.lua` |
+| `rebelot/kanagawa.nvim` | Alternative colorscheme | `lua/plugins/colorschemes.lua` |
+| `EdenEast/nightfox.nvim` | Alternative colorscheme | `lua/plugins/colorschemes.lua` |
+| `sainnhe/everforest` | Alternative colorscheme | `lua/plugins/colorschemes.lua` |
+| `navarasu/onedark.nvim` | Alternative colorscheme | `lua/plugins/colorschemes.lua` |
+| `gbprod/nord.nvim` | Alternative colorscheme | `lua/plugins/colorschemes.lua` |
+| `projekt0n/github-nvim-theme` | Alternative colorscheme | `lua/plugins/colorschemes.lua` |
 | `neovim/nvim-lspconfig` | LSP configuration | `lua/plugins/lsp.lua` |
 | `mason-org/mason.nvim` | LSP/tool installer | `lua/plugins/lsp.lua` |
 | `stevearc/conform.nvim` | Formatting (prettier, stylua, ruff) | `lua/plugins/lsp.lua` |

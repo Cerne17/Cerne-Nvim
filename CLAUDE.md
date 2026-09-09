@@ -34,7 +34,7 @@ This is a [LazyVim](https://lazyvim.github.io) v8 config built on [lazy.nvim](ht
 
 **Colorschemes:** `cerne` (native `colors/cerne.lua`, built from the cerne.pro brand tokens — see `~/Documents/design-guidelines`) is the default. Switch at runtime with `<leader>uC` (Telescope colorscheme picker with preview); the pick is written to `stdpath("state")/cerne_colorscheme` on every `ColorScheme` event (`lua/plugins/colorschemes.lua`) and restored on the next launch — LazyVim's `colorscheme` opt is a function that reads that file, falling back to `cerne` if nothing's saved. catppuccin, rose-pine, tokyonight, gruvbox, kanagawa, nightfox, everforest, onedark, nord, and github-nvim-theme are also installed as alternates.
 
-**Avante (AI assistant):** `lua/plugins/avante.lua` — disabled (`enabled = false`). No Anthropic API key available; AI assistance is handled via Claude Code in the terminal instead.
+**AI assistant:** `lua/plugins/claude.lua` — coder/claudecode.nvim, NOT Avante (`lua/plugins/avante.lua`, disabled — no Anthropic API key available). claudecode.nvim talks to the `claude` CLI already on PATH over the same WebSocket/MCP protocol the official VS Code/JetBrains extensions use (automatic buffer/selection context, `:ClaudeCodeDiffAccept`/`Deny` diff review) — no API key needed, uses the CLI's own auth. Terminal renders through snacks.nvim, so it inherits the `cerne` colorscheme's `NormalFloat`/`FloatBorder`. Owns the `<leader>a` group — this is why Harpoon's add-file keymap lives at `<leader>ha`, not `<leader>a`.
 
 **Quick reference:** `KEYMAPS.md` in the repo root lists all custom keymaps, plugins, LSP servers, and new-machine setup steps.
 
@@ -51,7 +51,7 @@ This is a [LazyVim](https://lazyvim.github.io) v8 config built on [lazy.nvim](ht
 | `<leader>fk` | Telescope: browse all keymaps |
 | `<leader>uC` | Telescope: colorscheme picker |
 | `<leader>gg` | LazyGit (overrides snacks default) |
-| `<leader>a` | Harpoon: add current file |
+| `<leader>ha` | Harpoon: add current file |
 | `<C-e>` | Harpoon: open quick menu |
 | `<leader>1` | Harpoon: jump to mark 1 |
 | `<leader>2` | Harpoon: jump to mark 2 |
@@ -60,5 +60,14 @@ This is a [LazyVim](https://lazyvim.github.io) v8 config built on [lazy.nvim](ht
 | `<leader>tc` | CodeSnap: copy code screenshot to clipboard (visual mode) |
 | `<C-d>` | Scroll down + center cursor |
 | `<C-u>` | Scroll up + center cursor |
+| `<leader>ac` | Claude Code: toggle terminal |
+| `<leader>af` | Claude Code: focus terminal |
+| `<leader>ar` | Claude Code: resume previous session |
+| `<leader>aC` | Claude Code: continue conversation |
+| `<leader>am` | Claude Code: select model |
+| `<leader>ab` | Claude Code: add current buffer to context |
+| `<leader>as` | Claude Code: send visual selection (normal: add file from oil) |
+| `<leader>aa` | Claude Code: accept diff |
+| `<leader>ad` | Claude Code: deny diff |
 
-Avante keymaps follow avante.nvim defaults (auto-set by the plugin).
+Avante keymaps follow avante.nvim defaults (auto-set by the plugin) — moot while disabled.

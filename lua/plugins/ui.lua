@@ -21,9 +21,34 @@ return {
   // core, unshaken]],
           ---@type snacks.dashboard.Item[]
           keys = {
-            { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
-            { icon = " ", key = "g", desc = "Find Text", action = ":Telescope live_grep" },
-            { icon = " ", key = "r", desc = "Recent Files", action = ":Telescope oldfiles" },
+            -- Explicit cwd: telescope's default (vim.uv.cwd()) crashes with
+            -- "path: expected string, got nil" if the shell's actual working
+            -- directory has been deleted out from under the process — falls
+            -- back to $HOME so the picker always has somewhere valid to open.
+            {
+              icon = " ",
+              key = "f",
+              desc = "Find File",
+              action = function()
+                require("telescope.builtin").find_files({ cwd = vim.uv.cwd() or vim.env.HOME })
+              end,
+            },
+            {
+              icon = " ",
+              key = "g",
+              desc = "Find Text",
+              action = function()
+                require("telescope.builtin").live_grep({ cwd = vim.uv.cwd() or vim.env.HOME })
+              end,
+            },
+            {
+              icon = " ",
+              key = "r",
+              desc = "Recent Files",
+              action = function()
+                require("telescope.builtin").oldfiles({ cwd = vim.uv.cwd() or vim.env.HOME })
+              end,
+            },
             { icon = " ", key = "e", desc = "Explorer", action = ":Oil" },
             { icon = " ", key = "s", desc = "Restore Session", section = "session" },
             { icon = " ", key = "q", desc = "Quit", action = ":qa" },

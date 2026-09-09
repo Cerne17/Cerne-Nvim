@@ -4,6 +4,21 @@
 -- syntax-only colors, matching "one accent dominates" from the guidelines.
 -- Most @treesitter captures inherit these via Neovim's built-in default
 -- links to the classic groups below (e.g. @function -> Function).
+--
+-- WCAG contrast pass (see also colors/cerne-light.lua):
+--   * oxblood (#8C3B24) reads at only 2.56:1 as TEXT against ink — fails
+--     AA (4.5:1) and violates the brand guideline's own rule ("oxblood...
+--     not for body text"). `c.err` is a brightened, text-safe tint used
+--     everywhere oxblood was previously used as a foreground; raw oxblood
+--     stays background-only (pills, MatchParen, Error bg) where it's
+--     brand-compliant and already high-contrast against bright text.
+--   * blink.cmp's ghost text defaults to `NonText`, which was set to
+--     surface2 on ink (1.05:1 — invisible). Given its own readable value.
+--   * Float/popup borders were surface2-on-surface (~1.1:1, invisible) —
+--     recolored to heartwood so panels visibly separate from the editor.
+--   * Completion/Telescope selection rows were only 1.14:1 apart from the
+--     unselected background — recolored to oxblood (a real bg, brand's
+--     own "active/pressed state" role) with bold bright text on top.
 
 vim.cmd("hi clear")
 if vim.fn.exists("syntax_on") == 1 then
@@ -23,7 +38,8 @@ local c = {
   glow = "#F6B65A",
   oxblood = "#8C3B24",
   sapwood = "#4E8F6B",
-  info = "#5C7A99", -- non-brand neutral blue, shared with the Ghostty/tmux ANSI palette
+  info = "#5F7F9F", -- non-brand neutral blue, brightened to 4.6:1; shared with Ghostty/tmux
+  err = "#CC5837", -- text-safe oxblood tint (4.6:1 vs ink); oxblood itself is bg-only
 }
 
 local hl = vim.api.nvim_set_hl
@@ -32,7 +48,7 @@ local groups = {
   -- Editor UI
   Normal = { fg = c.text, bg = c.ink },
   NormalFloat = { fg = c.text, bg = c.surface },
-  FloatBorder = { fg = c.surface2, bg = c.surface },
+  FloatBorder = { fg = c.heartwood, bg = c.surface },
   FloatTitle = { fg = c.heartwood, bg = c.surface, bold = true },
   CursorLine = { bg = c.surface },
   CursorLineNr = { fg = c.heartwood, bold = true },
@@ -42,7 +58,7 @@ local groups = {
   IncSearch = { fg = c.ink, bg = c.glow },
   CurSearch = { fg = c.ink, bg = c.glow },
   Pmenu = { fg = c.text, bg = c.surface },
-  PmenuSel = { fg = c.glow, bg = c.surface2, bold = true },
+  PmenuSel = { fg = c.text, bg = c.oxblood, bold = true },
   PmenuSbar = { bg = c.surface2 },
   PmenuThumb = { bg = c.oxblood },
   StatusLine = { fg = c.text, bg = c.surface },
@@ -58,7 +74,7 @@ local groups = {
   MatchParen = { fg = c.text, bg = c.oxblood, bold = true },
   Title = { fg = c.heartwood, bold = true },
   Directory = { fg = c.glow },
-  ErrorMsg = { fg = c.oxblood, bold = true },
+  ErrorMsg = { fg = c.err, bold = true },
   WarningMsg = { fg = c.heartwood },
   ModeMsg = { fg = c.sapwood },
   MoreMsg = { fg = c.sapwood },
@@ -96,18 +112,18 @@ local groups = {
   Tag = { fg = c.glow },
   Delimiter = { fg = c.text_muted },
   SpecialComment = { fg = c.text_muted, italic = true },
-  Debug = { fg = c.oxblood },
+  Debug = { fg = c.err },
   Underlined = { fg = c.glow, underline = true },
   Ignore = { fg = c.surface2 },
   Error = { fg = c.text, bg = c.oxblood, bold = true },
   Todo = { fg = c.ink, bg = c.heartwood, bold = true },
 
   -- Diagnostics
-  DiagnosticError = { fg = c.oxblood },
+  DiagnosticError = { fg = c.err },
   DiagnosticWarn = { fg = c.heartwood },
   DiagnosticInfo = { fg = c.info },
   DiagnosticHint = { fg = c.sapwood },
-  DiagnosticUnderlineError = { undercurl = true, sp = c.oxblood },
+  DiagnosticUnderlineError = { undercurl = true, sp = c.err },
   DiagnosticUnderlineWarn = { undercurl = true, sp = c.heartwood },
   DiagnosticUnderlineInfo = { undercurl = true, sp = c.info },
   DiagnosticUnderlineHint = { undercurl = true, sp = c.sapwood },
@@ -119,19 +135,21 @@ local groups = {
   -- gitsigns.nvim
   GitSignsAdd = { fg = c.sapwood },
   GitSignsChange = { fg = c.heartwood },
-  GitSignsDelete = { fg = c.oxblood },
+  GitSignsDelete = { fg = c.err },
   GitSignsCurrentLineBlame = { fg = c.text_muted, italic = true },
 
   -- Telescope
   TelescopeNormal = { fg = c.text, bg = c.surface },
-  TelescopeBorder = { fg = c.surface2, bg = c.surface },
+  TelescopeBorder = { fg = c.heartwood, bg = c.surface },
   TelescopePromptNormal = { fg = c.text, bg = c.surface },
-  TelescopePromptBorder = { fg = c.surface2, bg = c.surface },
+  TelescopePromptBorder = { fg = c.heartwood, bg = c.surface },
   TelescopePromptTitle = { fg = c.ink, bg = c.heartwood, bold = true },
   TelescopePreviewTitle = { fg = c.ink, bg = c.sapwood, bold = true },
   TelescopeResultsTitle = { fg = c.ink, bg = c.text_muted, bold = true },
-  TelescopeSelection = { fg = c.text, bg = c.surface2, bold = true },
-  TelescopeMatching = { fg = c.heartwood, bold = true },
+  TelescopeSelection = { fg = c.text, bg = c.oxblood, bold = true },
+  -- No fg override: fg=heartwood on the TelescopeSelection row (bg=oxblood)
+  -- was only 3.3:1 — borderline. Bold+underline works on any row state.
+  TelescopeMatching = { bold = true, underline = true },
 
   -- which-key
   WhichKey = { fg = c.heartwood, bold = true },
@@ -139,17 +157,21 @@ local groups = {
   WhichKeyDesc = { fg = c.text },
   WhichKeySeparator = { fg = c.text_muted },
   WhichKeyFloat = { bg = c.surface },
-  WhichKeyBorder = { fg = c.surface2, bg = c.surface },
+  WhichKeyBorder = { fg = c.heartwood, bg = c.surface },
 
   -- blink.cmp
   BlinkCmpMenu = { fg = c.text, bg = c.surface },
-  BlinkCmpMenuBorder = { fg = c.surface2, bg = c.surface },
-  BlinkCmpMenuSelection = { bg = c.surface2 },
+  BlinkCmpMenuBorder = { fg = c.heartwood, bg = c.surface },
+  BlinkCmpMenuSelection = { fg = c.text, bg = c.oxblood, bold = true },
   BlinkCmpDoc = { fg = c.text, bg = c.surface },
-  BlinkCmpDocBorder = { fg = c.surface2, bg = c.surface },
-  BlinkCmpLabelMatch = { fg = c.heartwood, bold = true },
+  BlinkCmpDocBorder = { fg = c.heartwood, bg = c.surface },
+  -- No fg override: inherits the row's own text color (bright text on
+  -- unselected, bright text on the oxblood-selected row too) so it's
+  -- legible in both states without a separate accent lookup.
+  BlinkCmpLabelMatch = { bold = true },
+  BlinkCmpGhostText = { fg = c.text_muted, italic = true },
   BlinkCmpSignatureHelp = { fg = c.text, bg = c.surface },
-  BlinkCmpSignatureHelpBorder = { fg = c.surface2, bg = c.surface },
+  BlinkCmpSignatureHelpBorder = { fg = c.heartwood, bg = c.surface },
 
   -- oil.nvim (directories/files render through Directory/Normal already)
   OilDir = { fg = c.glow, bold = true },

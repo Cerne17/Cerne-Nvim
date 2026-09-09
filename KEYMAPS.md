@@ -69,7 +69,8 @@
 | `nvim-lualine/lualine.nvim` | Status line | `lua/plugins/ui.lua` |
 | `folke/snacks.nvim` (dashboard) | Branded startup dashboard | `lua/plugins/ui.lua` |
 | `coder/claudecode.nvim` | Claude Code IDE integration | `lua/plugins/claude.lua` |
-| `colors/cerne.lua` | Default colorscheme, cerne.pro brand tokens | `colors/cerne.lua` |
+| `colors/cerne.lua` | Default colorscheme, cerne.pro brand tokens (dark) | `colors/cerne.lua` |
+| `colors/cerne-light.lua` | Light counterpart, same brand tokens | `colors/cerne-light.lua` |
 | `catppuccin/nvim` | Alternative colorscheme | `lua/plugins/colorschemes.lua` |
 | `rose-pine/neovim` | Alternative colorscheme | `lua/plugins/colorschemes.lua` |
 | `folke/tokyonight.nvim` | Alternative colorscheme | `lua/plugins/colorschemes.lua` |

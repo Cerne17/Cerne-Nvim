@@ -32,7 +32,7 @@ This is a [LazyVim](https://lazyvim.github.io) v8 config built on [lazy.nvim](ht
 
 **which-key:** scroll keys remapped to `<C-f>` (down) / `<C-b>` (up) inside the popup to avoid conflict with the `<C-d>`/`<C-u>` scroll-centering keymaps.
 
-**Colorschemes:** catppuccin-mocha is the default. rose-pine is also installed. Switch at runtime with `<leader>uC` (Telescope colorscheme picker with preview). Other available variants: catppuccin-latte, catppuccin-frappe, rose-pine-moon, rose-pine-dawn, tokyonight.
+**Colorschemes:** `cerne` (native `colors/cerne.lua`, built from the cerne.pro brand tokens — see `~/Documents/design-guidelines`) is the default. Switch at runtime with `<leader>uC` (Telescope colorscheme picker with preview); the pick is written to `stdpath("state")/cerne_colorscheme` on every `ColorScheme` event (`lua/plugins/colorschemes.lua`) and restored on the next launch — LazyVim's `colorscheme` opt is a function that reads that file, falling back to `cerne` if nothing's saved. catppuccin, rose-pine, tokyonight, gruvbox, kanagawa, nightfox, everforest, onedark, nord, and github-nvim-theme are also installed as alternates.
 
 **Avante (AI assistant):** `lua/plugins/avante.lua` — disabled (`enabled = false`). No Anthropic API key available; AI assistance is handled via Claude Code in the terminal instead.
 

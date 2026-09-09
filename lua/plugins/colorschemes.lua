@@ -1,3 +1,33 @@
+-- Whatever colorscheme is active gets written here on every ColorScheme
+-- event (see below), so the choice survives restarts. Falls back to the
+-- cerne.pro brand colorscheme (colors/cerne.lua) if nothing saved yet.
+local state_file = vim.fn.stdpath("state") .. "/cerne_colorscheme"
+
+local function read_saved_colorscheme()
+  local f = io.open(state_file, "r")
+  if not f then
+    return nil
+  end
+  local name = f:read("*l")
+  f:close()
+  return name and name ~= "" and name or nil
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("cerne_persist_colorscheme", { clear = true }),
+  callback = function()
+    local name = vim.g.colors_name
+    if not name then
+      return
+    end
+    local f = io.open(state_file, "w")
+    if f then
+      f:write(name)
+      f:close()
+    end
+  end,
+})
+
 return {
   -- Rose Pine (dark: main/moon, light: dawn)
   {
@@ -82,8 +112,10 @@ return {
   },
 
   -- Default colorscheme on startup
-  -- Switch at runtime with <leader>uC (Telescope colorscheme picker, live preview)
-  -- Dark options:  catppuccin-mocha, catppuccin-frappe, catppuccin-macchiato,
+  -- Switch at runtime with <leader>uC (Telescope colorscheme picker, live preview) —
+  -- the pick is persisted automatically and restored on the next launch.
+  -- Dark options:  cerne (brand default, colors/cerne.lua),
+  --                catppuccin-mocha, catppuccin-frappe, catppuccin-macchiato,
   --                rose-pine, rose-pine-moon, tokyonight, tokyonight-storm, tokyonight-night,
   --                gruvbox, kanagawa, kanagawa-wave, kanagawa-dragon,
   --                nightfox, duskfox, nordfox, terafox, carbonfox,
@@ -94,7 +126,9 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-mocha",
+      colorscheme = function()
+        vim.cmd.colorscheme(read_saved_colorscheme() or "cerne")
+      end,
     },
   },
 }

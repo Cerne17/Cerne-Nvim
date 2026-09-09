@@ -1,0 +1,156 @@
+{
+  "Class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:ClassName} {",
+      "public:",
+      "\t${1:ClassName}(${2:args});",
+      "\t~${1:ClassName}() = default;",
+      "",
+      "private:",
+      "\t${0}",
+      "};"
+    ],
+    "description": "Basic class scaffold"
+  },
+  "Singleton": {
+    "prefix": "singleton",
+    "body": [
+      "class ${1:ClassName} {",
+      "public:",
+      "\tstatic ${1:ClassName}& instance() {",
+      "\t\tstatic ${1:ClassName} instance;",
+      "\t\treturn instance;",
+      "\t}",
+      "",
+      "\t${1:ClassName}(const ${1:ClassName}&) = delete;",
+      "\t${1:ClassName}& operator=(const ${1:ClassName}&) = delete;",
+      "",
+      "private:",
+      "\t${1:ClassName}() = default;",
+      "\t~${1:ClassName}() = default;",
+      "};"
+    ],
+    "description": "Meyer's singleton (thread-safe, C++11)"
+  },
+  "Interface": {
+    "prefix": "interface",
+    "body": [
+      "class ${1:IInterfaceName} {",
+      "public:",
+      "\tvirtual ~${1:IInterfaceName}() = default;",
+      "\tvirtual ${2:void} ${3:methodName}(${4:args}) = 0;",
+      "};"
+    ],
+    "description": "Abstract base class / interface"
+  },
+  "Factory Method": {
+    "prefix": "factory",
+    "body": [
+      "class ${1:Product} {",
+      "public:",
+      "\tvirtual ~${1:Product}() = default;",
+      "\tvirtual void ${2:operation}() = 0;",
+      "};",
+      "",
+      "class ${3:ConcreteProduct} : public ${1:Product} {",
+      "public:",
+      "\tvoid ${2:operation}() override {",
+      "\t\t${0:// implementation}",
+      "\t}",
+      "};",
+      "",
+      "class ${4:Factory} {",
+      "public:",
+      "\tstatic std::unique_ptr<${1:Product}> create() {",
+      "\t\treturn std::make_unique<${3:ConcreteProduct}>();",
+      "\t}",
+      "};"
+    ],
+    "description": "Factory method pattern"
+  },
+  "Observer": {
+    "prefix": "observer",
+    "body": [
+      "class ${1:Observer} {",
+      "public:",
+      "\tvirtual ~${1:Observer}() = default;",
+      "\tvirtual void onNotify(${2:const std::string&} ${3:event}) = 0;",
+      "};",
+      "",
+      "class ${4:Subject} {",
+      "public:",
+      "\tvoid attach(${1:Observer}* observer) {",
+      "\t\tobservers_.push_back(observer);",
+      "\t}",
+      "",
+      "\tvoid notify(${2:const std::string&} ${3:event}) {",
+      "\t\tfor (auto* observer : observers_) {",
+      "\t\t\tobserver->onNotify(${3:event});",
+      "\t\t}",
+      "\t}",
+      "",
+      "private:",
+      "\tstd::vector<${1:Observer}*> observers_;",
+      "};"
+    ],
+    "description": "Observer pattern (Subject/Observer)"
+  },
+  "Strategy": {
+    "prefix": "strategy",
+    "body": [
+      "class ${1:Strategy} {",
+      "public:",
+      "\tvirtual ~${1:Strategy}() = default;",
+      "\tvirtual ${2:int} execute(${3:args}) = 0;",
+      "};",
+      "",
+      "class ${4:Context} {",
+      "public:",
+      "\texplicit ${4:Context}(std::unique_ptr<${1:Strategy}> strategy) : strategy_(std::move(strategy)) {}",
+      "",
+      "\tvoid setStrategy(std::unique_ptr<${1:Strategy}> strategy) {",
+      "\t\tstrategy_ = std::move(strategy);",
+      "\t}",
+      "",
+      "\t${2:int} run(${3:args}) {",
+      "\t\treturn strategy_->execute(${3:args});",
+      "\t}",
+      "",
+      "private:",
+      "\tstd::unique_ptr<${1:Strategy}> strategy_;",
+      "};"
+    ],
+    "description": "Strategy pattern"
+  },
+  "Decorator": {
+    "prefix": "decorator",
+    "body": [
+      "class ${1:Component} {",
+      "public:",
+      "\tvirtual ~${1:Component}() = default;",
+      "\tvirtual std::string operation() const = 0;",
+      "};",
+      "",
+      "class ${2:ConcreteComponent} : public ${1:Component} {",
+      "public:",
+      "\tstd::string operation() const override {",
+      "\t\treturn \"${3:base}\";",
+      "\t}",
+      "};",
+      "",
+      "class ${4:Decorator} : public ${1:Component} {",
+      "public:",
+      "\texplicit ${4:Decorator}(std::unique_ptr<${1:Component}> component) : component_(std::move(component)) {}",
+      "",
+      "\tstd::string operation() const override {",
+      "\t\treturn component_->operation() + ${0:\" + extra\"};",
+      "\t}",
+      "",
+      "private:",
+      "\tstd::unique_ptr<${1:Component}> component_;",
+      "};"
+    ],
+    "description": "Decorator pattern"
+  }
+}

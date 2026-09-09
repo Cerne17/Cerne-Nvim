@@ -3,6 +3,14 @@ return {
     "coder/claudecode.nvim",
     dependencies = { "folke/snacks.nvim" },
     config = true,
+    opts = {
+      diff_opts = {
+        -- VS Code-style inline diff in a single buffer (deleted/added lines
+        -- interleaved) instead of the default vertical split. Requires
+        -- Neovim >= 0.9.
+        layout = "unified",
+      },
+    },
     -- `cmd` lets lazy.nvim create command stubs that load the plugin on first
     -- use, so :ClaudeCode and friends work even before a keymap is pressed.
     cmd = {

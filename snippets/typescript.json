@@ -1,0 +1,129 @@
+{
+  "Class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:ClassName} {",
+      "\tconstructor(private ${2:field}: ${3:type}) {",
+      "\t\t${0}",
+      "\t}",
+      "}"
+    ],
+    "description": "Basic class scaffold"
+  },
+  "Interface": {
+    "prefix": "interface",
+    "body": [
+      "interface ${1:IInterfaceName} {",
+      "\t${2:methodName}(${3:args}): ${0:void};",
+      "}"
+    ],
+    "description": "Interface"
+  },
+  "Singleton": {
+    "prefix": "singleton",
+    "body": [
+      "class ${1:ClassName} {",
+      "\tprivate static instance: ${1:ClassName};",
+      "",
+      "\tprivate constructor() {",
+      "\t\t${0}",
+      "\t}",
+      "",
+      "\tstatic getInstance(): ${1:ClassName} {",
+      "\t\tif (!${1:ClassName}.instance) {",
+      "\t\t\t${1:ClassName}.instance = new ${1:ClassName}();",
+      "\t\t}",
+      "\t\treturn ${1:ClassName}.instance;",
+      "\t}",
+      "}"
+    ],
+    "description": "Singleton"
+  },
+  "Factory Method": {
+    "prefix": "factory",
+    "body": [
+      "interface ${1:Product} {",
+      "\t${2:operation}(): void;",
+      "}",
+      "",
+      "class ${3:ConcreteProduct} implements ${1:Product} {",
+      "\t${2:operation}(): void {",
+      "\t\t${0:// implementation}",
+      "\t}",
+      "}",
+      "",
+      "class ${4:Factory} {",
+      "\tstatic create(): ${1:Product} {",
+      "\t\treturn new ${3:ConcreteProduct}();",
+      "\t}",
+      "}"
+    ],
+    "description": "Factory method pattern"
+  },
+  "Observer": {
+    "prefix": "observer",
+    "body": [
+      "interface ${1:Observer} {",
+      "\tupdate(${2:event}: ${3:string}): void;",
+      "}",
+      "",
+      "class ${4:Subject} {",
+      "\tprivate observers: ${1:Observer}[] = [];",
+      "",
+      "\tattach(observer: ${1:Observer}): void {",
+      "\t\tthis.observers.push(observer);",
+      "\t}",
+      "",
+      "\tnotify(${2:event}: ${3:string}): void {",
+      "\t\tthis.observers.forEach((observer) => observer.update(${2:event}));",
+      "\t\t${0}",
+      "\t}",
+      "}"
+    ],
+    "description": "Observer pattern"
+  },
+  "Strategy": {
+    "prefix": "strategy",
+    "body": [
+      "interface ${1:Strategy} {",
+      "\texecute(${2:args}: ${3:any}): ${4:any};",
+      "}",
+      "",
+      "class ${5:Context} {",
+      "\tconstructor(private strategy: ${1:Strategy}) {}",
+      "",
+      "\tsetStrategy(strategy: ${1:Strategy}): void {",
+      "\t\tthis.strategy = strategy;",
+      "\t}",
+      "",
+      "\trun(${2:args}: ${3:any}): ${4:any} {",
+      "\t\treturn this.strategy.execute(${2:args});",
+      "\t}",
+      "}"
+    ],
+    "description": "Strategy pattern"
+  },
+  "Decorator": {
+    "prefix": "decorator",
+    "body": [
+      "interface ${1:Component} {",
+      "\toperation(): string;",
+      "}",
+      "",
+      "class ${2:ConcreteComponent} implements ${1:Component} {",
+      "\toperation(): string {",
+      "\t\treturn '${3:base}';",
+      "\t}",
+      "}",
+      "",
+      "class ${4:Decorator} implements ${1:Component} {",
+      "\tconstructor(private component: ${1:Component}) {}",
+      "",
+      "\toperation(): string {",
+      "\t\treturn this.component.operation() + ${0:' + extra'};",
+      "\t}",
+      "}"
+    ],
+    "description": "Decorator pattern"
+  }
+}

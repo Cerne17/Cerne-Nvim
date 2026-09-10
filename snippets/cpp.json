@@ -152,5 +152,51 @@
       "};"
     ],
     "description": "Decorator pattern"
+  },
+  "Policy Class": {
+    "prefix": "policyclass",
+    "body": [
+      "struct ${1:PolicyName} {",
+      "\ttemplate <typename T>",
+      "\tstatic ${2:void} ${3:operation}(T ${4:value}) {",
+      "\t\t${0}",
+      "\t}",
+      "};"
+    ],
+    "description": "Standalone policy class (compile-time strategy, no vtable)"
+  },
+  "Policy-Based Class": {
+    "prefix": "policy",
+    "body": [
+      "template <typename T, template <typename> class ${1:CheckingPolicy} = ${2:DefaultChecking}>",
+      "class ${3:SmartPtr} : public ${1:CheckingPolicy}<T> {",
+      "public:",
+      "\texplicit ${3:SmartPtr}(T* ptr = nullptr) : ptr_(ptr) {}",
+      "",
+      "\tT* operator->() {",
+      "\t\tthis->check(ptr_);",
+      "\t\treturn ptr_;",
+      "\t}",
+      "",
+      "private:",
+      "\tT* ptr_${0};",
+      "};"
+    ],
+    "description": "Policy-based design: host class parameterized by a policy template-template param (Alexandrescu style)"
+  },
+  "Policy Host (multiple policies)": {
+    "prefix": "policyhost",
+    "body": [
+      "template <",
+      "\ttypename T,",
+      "\ttemplate <typename> class ${1:StoragePolicy} = ${2:DefaultStorage},",
+      "\ttemplate <typename> class ${3:ThreadingPolicy} = ${4:SingleThreaded}",
+      ">",
+      "class ${5:ClassName} : private ${1:StoragePolicy}<T>, private ${3:ThreadingPolicy}<T> {",
+      "public:",
+      "\t${0}",
+      "};"
+    ],
+    "description": "Host class combining multiple orthogonal policies (storage/threading-style)"
   }
 }

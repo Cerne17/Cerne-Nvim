@@ -67,7 +67,7 @@ Hidden files are searched by `find_files` and `live_grep`; `.git/` is excluded.
 |--------|----------|-------|
 | `<leader>t*` | Run and inspect tests | `test.core` (+ neotest-python) |
 | `<leader>d*` | Breakpoints, stepping, debug UI | `dap.core` (+ nvim-dap-python) |
-| `<leader>p` | Yank-history picker (`<C-p>`/`<C-n>` after paste) | `coding.yanky` |
+| `<leader>P` | Yank-history picker (moved off `<leader>p`, see `lua/plugins/yanky.lua`) | `coding.yanky` |
 | `gsa` / `gsd` / `gsr` | Add / delete / replace surrounding pair | `coding.mini-surround` |
 | `<leader>cr` | LSP rename with live preview | `editor.inc-rename` |
 | `<leader>fp` | Recent-project picker | `util.project` |
@@ -90,6 +90,7 @@ Hidden files are searched by `find_files` and `live_grep`; `.git/` is excluded.
 | `kdheepak/lazygit.nvim` | LazyGit floating terminal | `lua/plugins/git.lua` |
 | `lewis6991/gitsigns.nvim` | Gutter git signs + current line blame | `lua/plugins/git.lua` |
 | `mistricky/codesnap.nvim` | Code screenshots to clipboard | `lua/plugins/codesnap.lua` |
+| `gbprod/yanky.nvim` | Yank ring; history picker on `<leader>P` | `lua/plugins/yanky.lua` |
 | `coder/claudecode.nvim` | Claude Code integration (`<leader>a*`) | `lua/plugins/claudecode.lua` |
 | `nvim-lualine/lualine.nvim` | Status line | `lua/plugins/ui.lua` |
 | `Cerne17/cerne.nvim` | Default colorscheme (`cerne` / `cerne-light`) | `lua/plugins/colorschemes.lua` |

@@ -27,7 +27,7 @@ This is a [LazyVim](https://lazyvim.github.io) v8 config built on [lazy.nvim](ht
 **Key design choices vs LazyVim defaults:**
 - **Completion:** blink.cmp (LazyVim v8 default) — NOT nvim-cmp. Ghost text and signature help are enabled in `lua/plugins/completion.lua`.
 - **Fuzzy finder:** Telescope — NOT snacks.picker (the LazyVim v8 default). Enabled through the `editor.telescope` extra, which registers Telescope as LazyVim's picker backend, so every `<leader>f*`, `<leader>s*` and `<leader>g*` picker routes to it at once. `lua/plugins/telescope.lua` holds only the deviations: live grep stays on `<leader>fg` (the extra puts `git_files` there), the LSP-symbols / diagnostics / keymaps pickers the extra lacks, the layout, and hidden-file search. Do not hand-roll picker keymaps that the extra already provides.
-- **File explorer:** oil.nvim on `<leader>pv` — NOT netrw. Configured in `lua/plugins/oil.lua`; shows hidden files by default.
+- **File explorer:** oil.nvim on `<leader>pv` — NOT netrw. Nothing may bind `<leader>p` as a leaf, or `<leader>pv` waits out `timeoutlen`; this is why `lua/plugins/yanky.lua` moves the yank-history picker to `<leader>P`. Configured in `lua/plugins/oil.lua`; shows hidden files by default.
 - **noice.nvim disabled:** Replaced with plain cmdline (`cmdheight=1`). lualine is fully replaced (not extended) in `lua/plugins/ui.lua` to avoid noice components.
 - **bufferline disabled:** Navigation via Harpoon 2 (`lua/plugins/harpoon.lua`). Lists are scoped per git branch — the list key combines cwd with the branch read from `.git/HEAD` — so a feature branch gets its own marks. Marks 1-9 are on `<leader>1`..`<leader>9`; add is `<leader>h`, which must stay a leaf mapping (no `<leader>h*` siblings) so it fires without waiting out `timeoutlen`.
 - **Dashboard:** snacks dashboard is enabled with a cerne.pro-branded header (`lua/plugins/ui.lua`). Its Find File / Find Text / Recent Files entries call Telescope with an explicit `cwd` so a deleted working directory falls back to `$HOME` instead of crashing the picker.
@@ -90,5 +90,5 @@ The module is wired into LazyVim's `colorscheme` **option as a function** (`lua/
 
 Everything not listed here is a LazyVim default or comes from an extra —
 including the `<leader>s*` pickers (Telescope), `<leader>t*` (neotest),
-`<leader>d*` (dap), `<leader>p` (yanky) and `gsa`/`gsd`/`gsr` (mini.surround).
+`<leader>d*` (dap), `<leader>P` (yanky) and `gsa`/`gsd`/`gsr` (mini.surround).
 `<leader>e` remains the snacks explorer; Oil on `<leader>pv` is the primary one.

@@ -18,17 +18,23 @@
 | `<leader>2` | Jump to Harpoon mark 2 | `lua/plugins/harpoon.lua` |
 | `<leader>3` | Jump to Harpoon mark 3 | `lua/plugins/harpoon.lua` |
 | `<leader>4` | Jump to Harpoon mark 4 | `lua/plugins/harpoon.lua` |
+| `<leader>5`..`<leader>9` | Jump to Harpoon marks 5-9 | `lua/plugins/harpoon.lua` |
+
+Lists are scoped per git branch, so each branch keeps its own set of marks.
 
 ### Telescope
+Telescope is LazyVim's picker backend, so every `<leader>f*`, `<leader>s*` and
+`<leader>g*` picker uses it. Listed here are only the local deviations — run
+`<leader>fk` for the full set.
+
 | Key | Action | File |
 |-----|--------|------|
-| `<leader>ff` | Find files | `lua/plugins/telescope.lua` |
-| `<leader>fg` | Live grep (search file contents) | `lua/plugins/telescope.lua` |
-| `<leader>fb` | Buffers | `lua/plugins/telescope.lua` |
+| `<leader>fg` | Live grep (the extra puts git_files here) | `lua/plugins/telescope.lua` |
 | `<leader>fs` | LSP document symbols | `lua/plugins/telescope.lua` |
 | `<leader>fd` | Diagnostics | `lua/plugins/telescope.lua` |
 | `<leader>fk` | Browse all keymaps | `lua/plugins/telescope.lua` |
-| `<leader>uC` | Colorscheme picker | `lua/plugins/telescope.lua` |
+
+Hidden files are searched by `find_files` and `live_grep`; `.git/` is excluded.
 
 ### Git
 | Key | Action | File |
@@ -56,10 +62,20 @@
 | `:CerneTheme [light\|dark\|auto]` | Set cerne polarity (no arg toggles) | `lua/config/cerne-theme.lua` |
 | `:CerneThemeAuto` | Re-sync from macOS appearance | `lua/config/cerne-theme.lua` |
 
+### From LazyVim extras
+| Prefix | Provides | Extra |
+|--------|----------|-------|
+| `<leader>t*` | Run and inspect tests | `test.core` (+ neotest-python) |
+| `<leader>d*` | Breakpoints, stepping, debug UI | `dap.core` (+ nvim-dap-python) |
+| `<leader>p` | Yank-history picker (`<C-p>`/`<C-n>` after paste) | `coding.yanky` |
+| `gsa` / `gsd` / `gsr` | Add / delete / replace surrounding pair | `coding.mini-surround` |
+| `<leader>cr` | LSP rename with live preview | `editor.inc-rename` |
+| `<leader>fp` | Recent-project picker | `util.project` |
+
 ### Code
 | Key | Action | Mode | File |
 |-----|--------|------|------|
-| `<leader>tc` | Copy code snapshot to clipboard | Visual | `lua/plugins/codesnap.lua` |
+| `<leader>cp` | Copy code snapshot to clipboard | Visual | `lua/plugins/codesnap.lua` |
 
 ---
 
@@ -95,9 +111,16 @@ warning.
 | `pyright` | Python | Type checking |
 | `ruff` | Python | Linting + formatting |
 | `lua_ls` | Lua | Neovim API types via lazydev.nvim |
-| `clangd` | C / C++ | Via the `lang.clangd` LazyVim extra |
-| `ts_ls` | TypeScript / JavaScript | |
-| `eslint` | TypeScript / JavaScript | Diagnostics via LSP |
+| `clangd` | C / C++ | Via the `lang.clangd` extra; custom flags in `lsp.lua` |
+| `vtsls` | TypeScript / JavaScript | Via the `lang.typescript` extra (replaces `ts_ls`) |
+| `eslint` | TypeScript / JavaScript | Diagnostics via LSP; hand-configured |
+| `jsonls` | JSON | Via `lang.json`, with SchemaStore completion |
+| `yamlls` | YAML | Via `lang.yaml`, with SchemaStore completion |
+| `marksman` | Markdown | Via `lang.markdown` |
+
+Most of these come from LazyVim extras listed in `lazyvim.json`.
+`lua/plugins/lsp.lua` carries only the deviations: the pyright virtualenv hook,
+the clangd flags, and eslint.
 
 ## Formatters (auto-installed by Mason)
 | Tool | Filetypes |
@@ -131,3 +154,6 @@ sudo apt install git ripgrep fd-find make build-essential
 1. Open `nvim` — lazy.nvim auto-installs all plugins
 2. Mason auto-installs all LSP servers and tools on first file open
 3. Run `:TSUpdate` to install Treesitter parsers
+
+Plugin updates are manual: lazy.nvim's periodic checker is off, so run
+`:Lazy sync` and commit `lazy-lock.json` as its own change.

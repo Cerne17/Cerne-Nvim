@@ -26,10 +26,10 @@ This is a [LazyVim](https://lazyvim.github.io) v8 config built on [lazy.nvim](ht
 
 **Key design choices vs LazyVim defaults:**
 - **Completion:** blink.cmp (LazyVim v8 default) — NOT nvim-cmp. Ghost text and signature help are enabled in `lua/plugins/completion.lua`.
-- **Fuzzy finder:** Telescope — NOT snacks.picker (the LazyVim v8 default). Telescope was added explicitly in `lua/plugins/telescope.lua`; plumbing for `<leader>ff/fg/fb/fs/fd/fk` overrides snacks.picker keymaps.
+- **Fuzzy finder:** Telescope — NOT snacks.picker (the LazyVim v8 default). Enabled through the `editor.telescope` extra, which registers Telescope as LazyVim's picker backend, so every `<leader>f*`, `<leader>s*` and `<leader>g*` picker routes to it at once. `lua/plugins/telescope.lua` holds only the deviations: live grep stays on `<leader>fg` (the extra puts `git_files` there), the LSP-symbols / diagnostics / keymaps pickers the extra lacks, the layout, and hidden-file search. Do not hand-roll picker keymaps that the extra already provides.
 - **File explorer:** oil.nvim on `<leader>pv` — NOT netrw. Configured in `lua/plugins/oil.lua`; shows hidden files by default.
 - **noice.nvim disabled:** Replaced with plain cmdline (`cmdheight=1`). lualine is fully replaced (not extended) in `lua/plugins/ui.lua` to avoid noice components.
-- **bufferline disabled:** Navigation via Harpoon 2 (`lua/plugins/harpoon.lua`).
+- **bufferline disabled:** Navigation via Harpoon 2 (`lua/plugins/harpoon.lua`). Lists are scoped per git branch — the list key combines cwd with the branch read from `.git/HEAD` — so a feature branch gets its own marks. Marks 1-9 are on `<leader>1`..`<leader>9`; add is `<leader>h`, which must stay a leaf mapping (no `<leader>h*` siblings) so it fires without waiting out `timeoutlen`.
 - **Dashboard:** snacks dashboard is enabled with a cerne.pro-branded header (`lua/plugins/ui.lua`). Its Find File / Find Text / Recent Files entries call Telescope with an explicit `cwd` so a deleted working directory falls back to `$HOME` instead of crashing the picker.
 - **Lazygit:** kdheepak/lazygit.nvim on `<leader>gg`; snacks.lazygit is disabled to avoid keymap conflict.
 - **Claude Code:** coder/claudecode.nvim owns the whole `<leader>a` prefix (`lua/plugins/claudecode.lua`). Nothing else may bind `<leader>a` itself — a bare `<leader>a` mapping makes every `<leader>a*` key wait out `timeoutlen`. This is why Harpoon's add-file lives on `<leader>h`.
@@ -49,6 +49,10 @@ The `lazyvim.plugins.extras.lang.clangd` extra is enabled in `lazyvim.json`; the
 The module is wired into LazyVim's `colorscheme` **option as a function** (`lua/plugins/colorschemes.lua`), not into an autocmd. Keep it that way: a hard-coded `colorscheme = "cerne"` there painted dark first and got repainted `cerne-light` a moment later, flashing on every boot in light mode. `lua/config/autocmds.lua` only requires the module to register its user commands.
 
 **Avante (AI assistant):** `lua/plugins/avante.lua` — disabled (`enabled = false`). No Anthropic API key available; AI assistance goes through claudecode.nvim (`<leader>a*`) instead.
+
+**LazyVim extras** (`lazyvim.json`): `editor.telescope`, `editor.inc-rename`, `coding.mini-surround`, `coding.yanky`, `util.project`, `test.core`, `dap.core`, and the language extras `lang.clangd`, `lang.python`, `lang.typescript`, `lang.json`, `lang.yaml`, `lang.markdown`. Prefer enabling an extra over hand-rolling equivalent config — `lua/plugins/` should carry deviations from the extras, not copies of them.
+
+**Plugin updates:** lazy.nvim's periodic `checker` is disabled, because it rewrote `lazy-lock.json` in the background and left the repo permanently dirty. Update deliberately with `:Lazy sync` and commit the lockfile as its own change.
 
 **Quick reference:** `KEYMAPS.md` in the repo root lists all custom keymaps, plugins, LSP servers, and new-machine setup steps.
 
@@ -70,8 +74,8 @@ The module is wired into LazyVim's `colorscheme` **option as a function** (`lua/
 | `<leader>1` | Harpoon: jump to mark 1 |
 | `<leader>2` | Harpoon: jump to mark 2 |
 | `<leader>3` | Harpoon: jump to mark 3 |
-| `<leader>4` | Harpoon: jump to mark 4 |
-| `<leader>tc` | CodeSnap: copy code screenshot to clipboard (visual mode) |
+| `<leader>4`..`<leader>9` | Harpoon: jump to marks 4-9 |
+| `<leader>cp` | CodeSnap: copy code screenshot to clipboard (visual mode) |
 | `<C-d>` | Scroll down + center cursor |
 | `<C-u>` | Scroll up + center cursor |
 | `<leader>ac` | Claude Code: toggle |
@@ -84,6 +88,7 @@ The module is wired into LazyVim's `colorscheme` **option as a function** (`lua/
 | `<leader>aa` | Claude Code: accept diff |
 | `<leader>ad` | Claude Code: deny diff |
 
-Everything not listed here is a LazyVim default — including the `<leader>s*`
-pickers and `<leader>e` explorer, which are still snacks.picker rather than
-Telescope.
+Everything not listed here is a LazyVim default or comes from an extra —
+including the `<leader>s*` pickers (Telescope), `<leader>t*` (neotest),
+`<leader>d*` (dap), `<leader>p` (yanky) and `gsa`/`gsd`/`gsr` (mini.surround).
+`<leader>e` remains the snacks explorer; Oil on `<leader>pv` is the primary one.

@@ -31,10 +31,9 @@ require("lazy").setup({
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = { colorscheme = { "cerne", "habamax" } },
-  checker = {
-    enabled = true, -- check for plugin updates periodically
-    notify = false, -- notify on update
-  }, -- automatically check for plugin updates
+  -- The periodic update check rewrites lazy-lock.json in the background, which
+  -- leaves the config repo permanently dirty. Update deliberately with :Lazy sync.
+  checker = { enabled = false },
   performance = {
     rtp = {
       -- disable some rtp plugins

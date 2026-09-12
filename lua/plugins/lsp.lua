@@ -80,7 +80,8 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        python = { "ruff_format" },
+        -- Order matters: sort and prune imports first, then reformat.
+        python = { "ruff_organize_imports", "ruff_format" },
         c = { "clang-format" },
         cpp = { "clang-format" },
         lua = { "stylua" },

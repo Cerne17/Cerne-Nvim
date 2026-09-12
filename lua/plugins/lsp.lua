@@ -21,8 +21,13 @@ return {
         update_in_insert = false,
         severity_sort = true,
       },
+      -- Base configuration for these servers comes from the LazyVim lang
+      -- extras enabled in lazyvim.json. Only genuine deviations belong here --
+      -- anything else is a copy that silently drifts from upstream.
       servers = {
-        -- Python: type checking via pyright, linting/formatting via ruff
+        -- lang.python already selects pyright + ruff (its defaults). The venv
+        -- hook is the deviation: point pyright at the active virtualenv so it
+        -- resolves third-party imports instead of flagging them as missing.
         pyright = {
           before_init = function(_, config)
             local venv = vim.env.VIRTUAL_ENV
@@ -41,12 +46,11 @@ return {
             },
           },
         },
-        ruff = {},
-
         -- Lua: lazydev.nvim provides Neovim API types automatically
         lua_ls = {},
 
-        -- C / C++: clangd (auto-installed by mason-lspconfig)
+        -- C / C++: lang.clangd provides the server; these flags are the
+        -- deviation from its defaults.
         clangd = {
           cmd = {
             "clangd",
@@ -64,8 +68,9 @@ return {
           },
         },
 
-        -- JavaScript / TypeScript
-        ts_ls = {},
+        -- JavaScript / TypeScript: lang.typescript selects vtsls and disables
+        -- ts_ls, so no server entry is needed here. eslint is not part of that
+        -- extra and stays hand-configured.
         eslint = {
           settings = {
             workingDirectories = { mode = "auto" },

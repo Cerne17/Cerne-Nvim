@@ -12,7 +12,7 @@
 ### Harpoon
 | Key | Action | File |
 |-----|--------|------|
-| `<leader>a` | Add file to Harpoon | `lua/plugins/harpoon.lua` |
+| `<leader>h` | Add file to Harpoon | `lua/plugins/harpoon.lua` |
 | `<C-e>` | Harpoon quick menu | `lua/plugins/harpoon.lua` |
 | `<leader>1` | Jump to Harpoon mark 1 | `lua/plugins/harpoon.lua` |
 | `<leader>2` | Jump to Harpoon mark 2 | `lua/plugins/harpoon.lua` |
@@ -35,6 +35,27 @@
 |-----|--------|------|
 | `<leader>gg` | LazyGit | `lua/plugins/git.lua` |
 
+### Claude Code
+`<leader>a` is the group prefix — nothing else may bind `<leader>a` on its own.
+
+| Key | Action | Mode | File |
+|-----|--------|------|------|
+| `<leader>ac` | Toggle Claude | Normal | `lua/plugins/claudecode.lua` |
+| `<leader>af` | Focus Claude | Normal | `lua/plugins/claudecode.lua` |
+| `<leader>ar` | Resume Claude | Normal | `lua/plugins/claudecode.lua` |
+| `<leader>aC` | Continue Claude | Normal | `lua/plugins/claudecode.lua` |
+| `<leader>am` | Select Claude model | Normal | `lua/plugins/claudecode.lua` |
+| `<leader>ab` | Add current buffer | Normal | `lua/plugins/claudecode.lua` |
+| `<leader>as` | Send selection / add file | Visual, explorer buffers | `lua/plugins/claudecode.lua` |
+| `<leader>aa` | Accept diff | Normal | `lua/plugins/claudecode.lua` |
+| `<leader>ad` | Deny diff | Normal | `lua/plugins/claudecode.lua` |
+
+### Theme
+| Command | Action | File |
+|---------|--------|------|
+| `:CerneTheme [light\|dark\|auto]` | Set cerne polarity (no arg toggles) | `lua/config/cerne-theme.lua` |
+| `:CerneThemeAuto` | Re-sync from macOS appearance | `lua/config/cerne-theme.lua` |
+
 ### Code
 | Key | Action | Mode | File |
 |-----|--------|------|------|
@@ -53,13 +74,17 @@
 | `kdheepak/lazygit.nvim` | LazyGit floating terminal | `lua/plugins/git.lua` |
 | `lewis6991/gitsigns.nvim` | Gutter git signs + current line blame | `lua/plugins/git.lua` |
 | `mistricky/codesnap.nvim` | Code screenshots to clipboard | `lua/plugins/codesnap.lua` |
+| `coder/claudecode.nvim` | Claude Code integration (`<leader>a*`) | `lua/plugins/claudecode.lua` |
 | `nvim-lualine/lualine.nvim` | Status line | `lua/plugins/ui.lua` |
-| `catppuccin/nvim` | Default colorscheme (mocha) | `lua/plugins/colorschemes.lua` |
-| `rose-pine/neovim` | Alternative colorscheme | `lua/plugins/colorschemes.lua` |
+| `Cerne17/cerne.nvim` | Default colorscheme (`cerne` / `cerne-light`) | `lua/plugins/colorschemes.lua` |
+| 10 alternative schemes | catppuccin, rose-pine, tokyonight, gruvbox, kanagawa, nightfox, everforest, onedark, nord, github | `lua/plugins/colorschemes.lua` |
 | `neovim/nvim-lspconfig` | LSP configuration | `lua/plugins/lsp.lua` |
 | `mason-org/mason.nvim` | LSP/tool installer | `lua/plugins/lsp.lua` |
 | `stevearc/conform.nvim` | Formatting (prettier, stylua, ruff) | `lua/plugins/lsp.lua` |
-| `mfussenegger/nvim-lint` | Linting (ruff for Python) | `lua/plugins/lsp.lua` |
+
+Linting is **not** configured through nvim-lint — the `ruff` and `eslint` LSP
+servers already publish those diagnostics, and doubling them up duplicated every
+warning.
 
 ---
 
@@ -70,6 +95,7 @@
 | `pyright` | Python | Type checking |
 | `ruff` | Python | Linting + formatting |
 | `lua_ls` | Lua | Neovim API types via lazydev.nvim |
+| `clangd` | C / C++ | Via the `lang.clangd` LazyVim extra |
 | `ts_ls` | TypeScript / JavaScript | |
 | `eslint` | TypeScript / JavaScript | Diagnostics via LSP |
 
@@ -79,17 +105,27 @@
 | `prettier` | JS, TS, JSX, TSX, JSON, CSS, HTML |
 | `stylua` | Lua |
 | `ruff_format` | Python |
+| `clang-format` | C, C++ |
 
 ---
 
 ## Setup Requirements (new machine)
 
 ### System packages
+
+macOS (the primary machine):
 ```sh
-sudo apt install git ripgrep make build-essential
+brew install neovim git ripgrep fd make lazygit
 ```
-- `lazygit` — install separately: https://github.com/jesseduffield/lazygit#installation
-- Neovim 0.10+ required (tested on v0.12.2)
+
+Debian/Ubuntu:
+```sh
+sudo apt install git ripgrep fd-find make build-essential
+```
+- `lazygit` on Linux — install separately: https://github.com/jesseduffield/lazygit#installation
+- Neovim 0.10+ required (currently running v0.11.5)
+- Mason installs the rest (LSP servers, stylua, prettier, clang-format) into
+  `~/.local/share/nvim/mason/bin`, which is not on `$PATH` unless you add it.
 
 ### First launch
 1. Open `nvim` — lazy.nvim auto-installs all plugins

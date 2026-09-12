@@ -7,7 +7,8 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
--- Registers :CerneTheme / :CerneThemeAuto and applies the saved (or
--- system-detected) cerne/cerne-light colorscheme, keeping nvim in sync with
--- macOS Dark Mode the same way dotfiles' zsh `cerne-theme` does.
-require("config.cerne-theme").startup()
+-- Registers :CerneTheme / :CerneThemeAuto, keeping nvim in sync with macOS
+-- Dark Mode the same way dotfiles' zsh `cerne-theme` does. The colorscheme
+-- itself is applied earlier, via LazyVim's `colorscheme` option in
+-- lua/plugins/colorschemes.lua.
+require("config.cerne-theme")

@@ -6,10 +6,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This config uses StyLua (configured in `stylua.toml`): 2-space indentation, 120-column width.
 
+StyLua is installed by Mason, not Homebrew, so it is not on `$PATH` by default.
+Either add `~/.local/share/nvim/mason/bin` to `$PATH` or call it by full path:
+
 ```sh
-stylua --check .   # check formatting
-stylua .           # apply formatting
+~/.local/share/nvim/mason/bin/stylua --check .   # check formatting
+~/.local/share/nvim/mason/bin/stylua .           # apply formatting
 ```
+
+Inside Neovim, conform.nvim runs the same binary on save.
 
 ## Architecture
 
@@ -25,16 +30,25 @@ This is a [LazyVim](https://lazyvim.github.io) v8 config built on [lazy.nvim](ht
 - **File explorer:** oil.nvim on `<leader>pv` — NOT netrw. Configured in `lua/plugins/oil.lua`; shows hidden files by default.
 - **noice.nvim disabled:** Replaced with plain cmdline (`cmdheight=1`). lualine is fully replaced (not extended) in `lua/plugins/ui.lua` to avoid noice components.
 - **bufferline disabled:** Navigation via Harpoon 2 (`lua/plugins/harpoon.lua`).
-- **Dashboard disabled:** snacks dashboard is off; Neovim opens to an empty buffer.
+- **Dashboard:** snacks dashboard is enabled with a cerne.pro-branded header (`lua/plugins/ui.lua`). Its Find File / Find Text / Recent Files entries call Telescope with an explicit `cwd` so a deleted working directory falls back to `$HOME` instead of crashing the picker.
 - **Lazygit:** kdheepak/lazygit.nvim on `<leader>gg`; snacks.lazygit is disabled to avoid keymap conflict.
+- **Claude Code:** coder/claudecode.nvim owns the whole `<leader>a` prefix (`lua/plugins/claudecode.lua`). Nothing else may bind `<leader>a` itself — a bare `<leader>a` mapping makes every `<leader>a*` key wait out `timeoutlen`. This is why Harpoon's add-file lives on `<leader>h`.
 
-**LSP / Mason / Treesitter:** Configured in `lua/plugins/lsp.lua`. LSP servers (pyright, ruff, lua_ls, ts_ls, eslint) are auto-installed by mason-lspconfig when detected in the `servers` table — do NOT add them to mason's `ensure_installed` or they will double-install and crash. Mason's `ensure_installed` is only for standalone tools not tied to an LSP server (currently: prettier). Inlay hints are globally enabled. conform.nvim handles formatting; nvim-lint handles ruff linting for Python (eslint diagnostics come from the eslint LSP).
+**LSP / Mason / Treesitter:** Configured in `lua/plugins/lsp.lua`. LSP servers (pyright, ruff, lua_ls, clangd, ts_ls, eslint) are auto-installed by mason-lspconfig when detected in the `servers` table — do NOT add them to mason's `ensure_installed` or they will double-install and crash. Mason's `ensure_installed` is only for standalone tools not tied to an LSP server (currently: prettier, clang-format). Inlay hints are globally enabled. conform.nvim handles formatting.
+
+**Linting comes from LSP servers only** — there is deliberately no `linters_by_ft` entry for Python. The `ruff` LSP already publishes lint diagnostics, so adding nvim-lint's `ruff` on top duplicated every warning. eslint diagnostics likewise come from the eslint LSP. Only reach for nvim-lint for a linter with no language server.
+
+The `lazyvim.plugins.extras.lang.clangd` extra is enabled in `lazyvim.json`; the other languages are hand-configured in `lua/plugins/lsp.lua` rather than through LazyVim extras.
 
 **which-key:** scroll keys remapped to `<C-f>` (down) / `<C-b>` (up) inside the popup to avoid conflict with the `<C-d>`/`<C-u>` scroll-centering keymaps.
 
-**Colorschemes:** catppuccin-mocha is the default. rose-pine is also installed. Switch at runtime with `<leader>uC` (Telescope colorscheme picker with preview). Other available variants: catppuccin-latte, catppuccin-frappe, rose-pine-moon, rose-pine-dawn, tokyonight.
+**Colorschemes:** `cerne` (the cerne.pro brand palette, from `Cerne17/cerne.nvim`) is the default, with `cerne-light` as its light counterpart. Ten other schemes are installed as alternatives: catppuccin, rose-pine, tokyonight, gruvbox, kanagawa, nightfox, everforest, onedark, nord and github-nvim-theme — see the comment block at the bottom of `lua/plugins/colorschemes.lua` for every variant name. Switch at runtime with `<leader>uC` (Telescope colorscheme picker with preview).
 
-**Avante (AI assistant):** `lua/plugins/avante.lua` — disabled (`enabled = false`). No Anthropic API key available; AI assistance is handled via Claude Code in the terminal instead.
+**Theme sync (`lua/config/cerne-theme.lua`):** mirrors the shell `cerne-theme` toggle from dotfiles so Neovim follows macOS Dark Mode. State lives in `stdpath("state") .. "/cerne_colorscheme"` (`light` / `dark` / `auto`), the same file dotfiles' `bin/cerne-theme-watch.sh` reads before remote-sending `:CerneThemeAuto` over the RPC server. `:CerneTheme [light|dark|auto]` sets it; no argument toggles polarity.
+
+The module is wired into LazyVim's `colorscheme` **option as a function** (`lua/plugins/colorschemes.lua`), not into an autocmd. Keep it that way: a hard-coded `colorscheme = "cerne"` there painted dark first and got repainted `cerne-light` a moment later, flashing on every boot in light mode. `lua/config/autocmds.lua` only requires the module to register its user commands.
+
+**Avante (AI assistant):** `lua/plugins/avante.lua` — disabled (`enabled = false`). No Anthropic API key available; AI assistance goes through claudecode.nvim (`<leader>a*`) instead.
 
 **Quick reference:** `KEYMAPS.md` in the repo root lists all custom keymaps, plugins, LSP servers, and new-machine setup steps.
 
@@ -51,7 +65,7 @@ This is a [LazyVim](https://lazyvim.github.io) v8 config built on [lazy.nvim](ht
 | `<leader>fk` | Telescope: browse all keymaps |
 | `<leader>uC` | Telescope: colorscheme picker |
 | `<leader>gg` | LazyGit (overrides snacks default) |
-| `<leader>a` | Harpoon: add current file |
+| `<leader>h` | Harpoon: add current file |
 | `<C-e>` | Harpoon: open quick menu |
 | `<leader>1` | Harpoon: jump to mark 1 |
 | `<leader>2` | Harpoon: jump to mark 2 |
@@ -60,5 +74,16 @@ This is a [LazyVim](https://lazyvim.github.io) v8 config built on [lazy.nvim](ht
 | `<leader>tc` | CodeSnap: copy code screenshot to clipboard (visual mode) |
 | `<C-d>` | Scroll down + center cursor |
 | `<C-u>` | Scroll up + center cursor |
+| `<leader>ac` | Claude Code: toggle |
+| `<leader>af` | Claude Code: focus |
+| `<leader>ar` | Claude Code: resume |
+| `<leader>aC` | Claude Code: continue |
+| `<leader>am` | Claude Code: select model |
+| `<leader>ab` | Claude Code: add current buffer |
+| `<leader>as` | Claude Code: send selection (visual) / add file (explorer buffers) |
+| `<leader>aa` | Claude Code: accept diff |
+| `<leader>ad` | Claude Code: deny diff |
 
-Avante keymaps follow avante.nvim defaults (auto-set by the plugin).
+Everything not listed here is a LazyVim default — including the `<leader>s*`
+pickers and `<leader>e` explorer, which are still snacks.picker rather than
+Telescope.

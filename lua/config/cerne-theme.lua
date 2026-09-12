@@ -42,7 +42,11 @@ local function resolve(state)
 end
 
 local function apply(resolved)
-  vim.cmd.colorscheme(resolved == "light" and "cerne-light" or "cerne")
+  local name = resolved == "light" and "cerne-light" or "cerne"
+  if not pcall(vim.cmd.colorscheme, name) then
+    vim.notify("cerne.nvim unavailable, falling back to habamax", vim.log.levels.WARN)
+    pcall(vim.cmd.colorscheme, "habamax")
+  end
 end
 
 -- `:CerneTheme [light|dark|auto]` — no arg toggles the resolved polarity,
@@ -73,7 +77,10 @@ function M.auto()
   apply(resolve(state))
 end
 
--- Apply the saved (or system-detected) theme once, on startup.
+-- Apply the saved (or system-detected) theme once, on startup. Wired into
+-- LazyVim's `colorscheme` option (see lua/plugins/colorschemes.lua) rather than
+-- an autocmd, so the resolved polarity is applied in one shot -- setting a
+-- hard-coded dark default there first made light mode flash dark on every boot.
 function M.startup()
   apply(resolve(read_state()))
 end

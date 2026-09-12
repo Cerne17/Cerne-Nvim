@@ -95,13 +95,7 @@ return {
     },
   },
 
-  -- Linting (eslint diagnostics come from the LSP server above)
-  {
-    "mfussenegger/nvim-lint",
-    opts = {
-      linters_by_ft = {
-        python = { "ruff" },
-      },
-    },
-  },
+  -- No nvim-lint entry for Python: the `ruff` LSP above already publishes lint
+  -- diagnostics, and running both duplicated every warning. eslint diagnostics
+  -- likewise come from the eslint LSP server.
 }

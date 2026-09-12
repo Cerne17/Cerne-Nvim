@@ -101,7 +101,13 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "cerne",
+      -- A function, not a string: cerne-theme resolves the saved light/dark
+      -- state (or the macOS appearance) and applies cerne or cerne-light in a
+      -- single step. A hard-coded "cerne" here would paint dark first and get
+      -- repainted light a moment later.
+      colorscheme = function()
+        require("config.cerne-theme").startup()
+      end,
     },
   },
 }

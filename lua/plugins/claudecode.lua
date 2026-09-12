@@ -2,7 +2,6 @@ return {
   {
     "coder/claudecode.nvim",
     dependencies = { "folke/snacks.nvim" },
-    config = true,
     opts = {
       diff_opts = {
         -- VS Code-style inline diff in a single buffer (deleted/added lines

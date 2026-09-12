@@ -54,6 +54,8 @@ The module is wired into LazyVim's `colorscheme` **option as a function** (`lua/
 
 **Plugin updates:** lazy.nvim's periodic `checker` is disabled, because it rewrote `lazy-lock.json` in the background and left the repo permanently dirty. Update deliberately with `:Lazy sync` and commit the lockfile as its own change.
 
+**Keymap explorer (`lua/config/keymap-explorer.lua`):** `<leader>fK` lists ~19 concept categories (Git, Debug, Harpoon, Editing, …) with a preview of the keymaps in each, so the config can be browsed rather than searched; `<CR>` drills into a category and `<CR>` again runs the mapping. `<leader>fA` is the flat list with a category column. Everything is derived from the live keymap table at call time, so it cannot drift the way a hand-written cheatsheet does. Categories are an ordered rule list matched against the lhs and the description — first match wins, so narrow rules (mini.pairs, Vim's own `:help …-default` mappings) sit above broad prefix rules. Adding a plugin needs no change here unless its keymaps land in `Other`.
+
 **Quick reference:** `KEYMAPS.md` in the repo root lists all custom keymaps, plugins, LSP servers, and new-machine setup steps.
 
 ## Keymaps added/overridden
@@ -66,7 +68,9 @@ The module is wired into LazyVim's `colorscheme` **option as a function** (`lua/
 | `<leader>fb` | Telescope: buffers |
 | `<leader>fs` | Telescope: LSP document symbols |
 | `<leader>fd` | Telescope: diagnostics |
-| `<leader>fk` | Telescope: browse all keymaps |
+| `<leader>fk` | Telescope: browse all keymaps (search by term) |
+| `<leader>fK` | Keymap explorer: browse by category, with preview |
+| `<leader>fA` | Keymaps: flat list with category column |
 | `<leader>uC` | Telescope: colorscheme picker |
 | `<leader>gg` | LazyGit (overrides snacks default) |
 | `<leader>h` | Harpoon: add current file |

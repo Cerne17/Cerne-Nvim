@@ -32,7 +32,13 @@ Telescope is LazyVim's picker backend, so every `<leader>f*`, `<leader>s*` and
 | `<leader>fg` | Live grep (the extra puts git_files here) | `lua/plugins/telescope.lua` |
 | `<leader>fs` | LSP document symbols | `lua/plugins/telescope.lua` |
 | `<leader>fd` | Diagnostics | `lua/plugins/telescope.lua` |
-| `<leader>fk` | Browse all keymaps | `lua/plugins/telescope.lua` |
+| `<leader>fk` | Browse all keymaps (needs a search term) | `lua/plugins/telescope.lua` |
+| `<leader>fK` | Keymap explorer — categories first, with preview | `lua/config/keymap-explorer.lua` |
+| `<leader>fA` | All keymaps, flat, with a category column | `lua/config/keymap-explorer.lua` |
+
+`<leader>fK` (also `:KeymapExplorer`) is for browsing rather than searching:
+pick a category to preview its keymaps, `<CR>` to drill in, `<CR>` again to run
+the mapping. It reads the live keymap table, so it always matches reality.
 
 Hidden files are searched by `find_files` and `live_grep`; `.git/` is excluded.
 

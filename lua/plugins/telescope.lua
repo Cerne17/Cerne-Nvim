@@ -29,6 +29,23 @@ return {
           },
         },
         file_ignore_patterns = { "node_modules", "%.git/" },
+        -- Search hidden files. Oil already shows them, and this config lives in
+        -- a dotfile directory, so the default of skipping them meant <leader>ff
+        -- could not find .zshrc, .github/ or stylua.toml's neighbours.
+        -- .git/ is still excluded by file_ignore_patterns above.
+        vimgrep_arguments = {
+          "rg",
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+          "--hidden",
+        },
+      },
+      pickers = {
+        find_files = { hidden = true },
       },
     },
   },

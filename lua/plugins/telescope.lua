@@ -19,7 +19,11 @@ return {
     opts = {
       defaults = {
         prompt_prefix = "  ",
-        selection_caret = " ",
+        -- selection_caret and entry_prefix must be the same display width.
+        -- A 1-char caret against the default 2-char entry_prefix made every
+        -- result shift right as the selection moved over it.
+        selection_caret = "❯ ",
+        entry_prefix = "  ",
         sorting_strategy = "ascending",
         layout_strategy = "horizontal",
         layout_config = {

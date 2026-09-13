@@ -29,6 +29,7 @@ This is a [LazyVim](https://lazyvim.github.io) v8 config built on [lazy.nvim](ht
 - **Fuzzy finder:** Telescope — NOT snacks.picker (the LazyVim v8 default). Enabled through the `editor.telescope` extra, which registers Telescope as LazyVim's picker backend, so every `<leader>f*`, `<leader>s*` and `<leader>g*` picker routes to it at once. `lua/plugins/telescope.lua` holds only the deviations: live grep stays on `<leader>fg` (the extra puts `git_files` there), the LSP-symbols / diagnostics / keymaps pickers the extra lacks, the layout, and hidden-file search. Do not hand-roll picker keymaps that the extra already provides.
 - **File explorer:** oil.nvim on `<leader>pv` — NOT netrw. Nothing may bind `<leader>p` as a leaf, or `<leader>pv` waits out `timeoutlen`; this is why `lua/plugins/yanky.lua` moves the yank-history picker to `<leader>P`. Configured in `lua/plugins/oil.lua`; shows hidden files by default.
 - **noice.nvim disabled:** Replaced with plain cmdline (`cmdheight=1`). lualine is fully replaced (not extended) in `lua/plugins/ui.lua` to avoid noice components.
+- **tmux integration:** `christoomey/vim-tmux-navigator` (`lua/plugins/tmux-navigator.lua`) takes over `<C-h/j/k/l>` so they cross tmux panes as well as Neovim splits. The matching plugin has to be in `~/dotfiles/.tmux.conf`; without it the keys still move between splits but stop at the window edge.
 - **bufferline disabled:** Navigation via Harpoon 2 (`lua/plugins/harpoon.lua`). Lists are scoped per git branch — the list key combines cwd with the branch read from `.git/HEAD` — so a feature branch gets its own marks. Marks 1-9 are on `<leader>1`..`<leader>9`; add is `<leader>h`, which must stay a leaf mapping (no `<leader>h*` siblings) so it fires without waiting out `timeoutlen`.
 - **Dashboard:** snacks dashboard is enabled with a cerne.pro-branded header (`lua/plugins/ui.lua`). Its Find File / Find Text / Recent Files entries call Telescope with an explicit `cwd` so a deleted working directory falls back to `$HOME` instead of crashing the picker.
 - **Lazygit:** kdheepak/lazygit.nvim on `<leader>gg`; snacks.lazygit is disabled to avoid keymap conflict.
@@ -80,6 +81,7 @@ The module is wired into LazyVim's `colorscheme` **option as a function** (`lua/
 | `<leader>3` | Harpoon: jump to mark 3 |
 | `<leader>4`..`<leader>9` | Harpoon: jump to marks 4-9 |
 | `<leader>cp` | CodeSnap: copy code screenshot to clipboard (visual mode) |
+| `<C-h/j/k/l>` | Move to split/tmux pane left/down/up/right |
 | `<C-d>` | Scroll down + center cursor |
 | `<C-u>` | Scroll up + center cursor |
 | `<leader>ac` | Claude Code: toggle |

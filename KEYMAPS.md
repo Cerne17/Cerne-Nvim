@@ -6,6 +6,7 @@
 | Key | Action | File |
 |-----|--------|------|
 | `<leader>pv` | Open Oil file explorer | `lua/config/keymaps.lua` |
+| `<C-h/j/k/l>` | Move to split / tmux pane | `lua/plugins/tmux-navigator.lua` |
 | `<C-d>` | Scroll down + center | `lua/config/keymaps.lua` |
 | `<C-u>` | Scroll up + center | `lua/config/keymaps.lua` |
 
@@ -97,6 +98,7 @@ Hidden files are searched by `find_files` and `live_grep`; `.git/` is excluded.
 | `lewis6991/gitsigns.nvim` | Gutter git signs + current line blame | `lua/plugins/git.lua` |
 | `mistricky/codesnap.nvim` | Code screenshots to clipboard | `lua/plugins/codesnap.lua` |
 | `gbprod/yanky.nvim` | Yank ring; history picker on `<leader>P` | `lua/plugins/yanky.lua` |
+| `christoomey/vim-tmux-navigator` | `<C-h/j/k/l>` across splits and tmux panes | `lua/plugins/tmux-navigator.lua` |
 | `coder/claudecode.nvim` | Claude Code integration (`<leader>a*`) | `lua/plugins/claudecode.lua` |
 | `nvim-lualine/lualine.nvim` | Status line | `lua/plugins/ui.lua` |
 | `Cerne17/cerne.nvim` | Default colorscheme (`cerne` / `cerne-light`) | `lua/plugins/colorschemes.lua` |

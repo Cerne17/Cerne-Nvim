@@ -35,11 +35,11 @@ This is a [LazyVim](https://lazyvim.github.io) v8 config built on [lazy.nvim](ht
 - **Lazygit:** kdheepak/lazygit.nvim on `<leader>gg`; snacks.lazygit is disabled to avoid keymap conflict.
 - **Claude Code:** coder/claudecode.nvim owns the whole `<leader>a` prefix (`lua/plugins/claudecode.lua`). Nothing else may bind `<leader>a` itself — a bare `<leader>a` mapping makes every `<leader>a*` key wait out `timeoutlen`. This is why Harpoon's add-file lives on `<leader>h`.
 
-**LSP / Mason / Treesitter:** Configured in `lua/plugins/lsp.lua`. LSP servers (pyright, ruff, lua_ls, clangd, ts_ls, eslint) are auto-installed by mason-lspconfig when detected in the `servers` table — do NOT add them to mason's `ensure_installed` or they will double-install and crash. Mason's `ensure_installed` is only for standalone tools not tied to an LSP server (currently: prettier, clang-format). Inlay hints are globally enabled. conform.nvim handles formatting.
+**LSP / Mason / Treesitter:** Configured in `lua/plugins/lsp.lua`. Active servers are pyright, ruff, lua_ls, clangd, vtsls, eslint, jsonls, yamlls and marksman; `ts_ls`, `basedpyright` and `ruff_lsp` are deliberately disabled by the lang extras so nothing double-attaches. They are auto-installed by mason-lspconfig when detected in the `servers` table — do NOT add them to mason's `ensure_installed` or they will double-install and crash. Mason's `ensure_installed` is only for standalone tools not tied to an LSP server (currently: prettier, clang-format). Inlay hints are globally enabled. conform.nvim handles formatting.
 
 **Linting comes from LSP servers only** — there is deliberately no `linters_by_ft` entry for Python. The `ruff` LSP already publishes lint diagnostics, so adding nvim-lint's `ruff` on top duplicated every warning. eslint diagnostics likewise come from the eslint LSP. Only reach for nvim-lint for a linter with no language server.
 
-The `lazyvim.plugins.extras.lang.clangd` extra is enabled in `lazyvim.json`; the other languages are hand-configured in `lua/plugins/lsp.lua` rather than through LazyVim extras.
+Most server configuration comes from the LazyVim lang extras listed below, not from this file. `lua/plugins/lsp.lua` should carry only deviations from them — currently the pyright virtualenv hook, the clangd flags, and eslint, which no enabled extra covers.
 
 **which-key:** scroll keys remapped to `<C-f>` (down) / `<C-b>` (up) inside the popup to avoid conflict with the `<C-d>`/`<C-u>` scroll-centering keymaps.
 

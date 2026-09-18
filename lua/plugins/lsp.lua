@@ -59,7 +59,7 @@ return {
             "--header-insertion=iwyu",
             "--completion-style=detailed",
             "--function-arg-placeholders",
-            "--fallback-style=llvm",
+            "--fallback-style=mozilla",
           },
           init_options = {
             usePlaceholders = true,
@@ -97,6 +97,15 @@ return {
         json = { "prettier" },
         css = { "prettier" },
         html = { "prettier" },
+      },
+      -- clang-format ignores clangd's --fallback-style flag (that flag only
+      -- covers clangd's own formatting requests). This mirrors the fallback
+      -- here so a project with no .clang-format still formats as Mozilla on
+      -- save; a project's own .clang-format still wins over this.
+      formatters = {
+        ["clang-format"] = {
+          prepend_args = { "--style=mozilla" },
+        },
       },
     },
   },

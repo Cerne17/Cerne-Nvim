@@ -83,6 +83,7 @@ Hidden files are searched by `find_files` and `live_grep`; `.git/` is excluded.
 | Key | Action | Mode | File |
 |-----|--------|------|------|
 | `<leader>cp` | Copy code snapshot to clipboard | Visual | `lua/plugins/codesnap.lua` |
+| `<leader>cP` | Copy code snapshot, tinting chosen lines | Visual | `lua/plugins/codesnap.lua` |
 
 ---
 

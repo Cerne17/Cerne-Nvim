@@ -49,6 +49,8 @@ Most server configuration comes from the LazyVim lang extras listed below, not f
 
 The module is wired into LazyVim's `colorscheme` **option as a function** (`lua/plugins/colorschemes.lua`), not into an autocmd. Keep it that way: a hard-coded `colorscheme = "cerne"` there painted dark first and got repainted `cerne-light` a moment later, flashing on every boot in light mode. `lua/config/autocmds.lua` only requires the module to register its user commands.
 
+**CodeSnap (`lua/plugins/codesnap.lua`):** snapshots are branded — code in `cerne` (dark), background gradient in `cerne-light` (surface → surface2). CodeSnap renders through syntect, not Neovim, so the code theme is a hand-ported Sublime theme at `codesnap/themes/cerne.tmTheme`; it does **not** follow `:CerneTheme` at runtime, and it has to be re-synced by hand if the cerne palette moves. Both keymaps use `:<C-u>` rather than `<cmd>`: CodeSnap reads the `'<`/`'>` marks, and a `<cmd>` mapping never leaves visual mode, so the marks still hold the *previous* selection and the snapshot captures the wrong lines. `<leader>cp` is the plain snapshot and `<leader>cP` the variant that tints chosen lines with `highlight_color` — binding `cp` to the tinting variant is what made every snapshot look washed out. Note that only `show_line_number`, `show_workspace` and `highlight_color` are top-level opts — everything else (breadcrumbs, watermark, background, window) must be nested under `snapshot_config` or it is silently ignored.
+
 **Avante (AI assistant):** `lua/plugins/avante.lua` — disabled (`enabled = false`). No Anthropic API key available; AI assistance goes through claudecode.nvim (`<leader>a*`) instead.
 
 **LazyVim extras** (`lazyvim.json`): `editor.telescope`, `editor.inc-rename`, `coding.mini-surround`, `coding.yanky`, `util.project`, `test.core`, `dap.core`, and the language extras `lang.clangd`, `lang.python`, `lang.typescript`, `lang.json`, `lang.yaml`, `lang.markdown`. Prefer enabling an extra over hand-rolling equivalent config — `lua/plugins/` should carry deviations from the extras, not copies of them.
@@ -81,6 +83,7 @@ The module is wired into LazyVim's `colorscheme` **option as a function** (`lua/
 | `<leader>3` | Harpoon: jump to mark 3 |
 | `<leader>4`..`<leader>9` | Harpoon: jump to marks 4-9 |
 | `<leader>cp` | CodeSnap: copy code screenshot to clipboard (visual mode) |
+| `<leader>cP` | CodeSnap: screenshot with chosen lines tinted (visual mode) |
 | `<C-h/j/k/l>` | Move to split/tmux pane left/down/up/right |
 | `<C-d>` | Scroll down + center cursor |
 | `<C-u>` | Scroll up + center cursor |

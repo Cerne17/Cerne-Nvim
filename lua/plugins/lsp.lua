@@ -66,7 +66,7 @@ return {
             -- is further from the intent than plain mozilla. Formatting on
             -- save goes through conform below, which does take the full
             -- style string.
-            "--fallback-style=mozilla",
+            "--fallback-style={BasedOnStyle: mozilla, BreakAfterReturnType: None, AlwaysBreakAfterDefinitionReturnType: None}",
           },
           init_options = {
             usePlaceholders = true,

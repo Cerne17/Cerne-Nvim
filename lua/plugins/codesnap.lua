@@ -5,8 +5,17 @@ return {
     -- Moved off <leader>tc: <leader>t is LazyVim's test group (neotest), and a
     -- <leader>t* leaf there would shadow it. <leader>c is the code group, and
     -- <leader>cs / <leader>cS are already Trouble symbols, hence cp: code picture.
+    --
+    -- `:<C-u>` rather than `<cmd>`: CodeSnap reads the '< and '> marks, and a
+    -- <cmd> mapping does not leave visual mode, so the marks still hold the
+    -- PREVIOUS selection. Typing `:` ends visual mode and sets them, and <C-u>
+    -- drops the '<,'> range Vim prefills (CodeSnap ignores the range anyway).
+    -- cp is the plain snapshot; cP opens the picker that tints chosen lines
+    -- with highlight_color -- that tint is why every snapshot used to look
+    -- washed out, since cp was bound to the highlight variant.
     keys = {
-      { "<leader>cp", "<cmd>CodeSnapHighlight<cr>", mode = "x", desc = "Copy Code Snapshot" },
+      { "<leader>cp", ":<C-u>CodeSnap<cr>", mode = "x", desc = "Copy Code Snapshot" },
+      { "<leader>cP", ":<C-u>CodeSnapHighlight<cr>", mode = "x", desc = "Copy Code Snapshot (highlight lines)" },
     },
     -- Branded like the rest of the config: the code window uses cerne (dark),
     -- the background gradient uses cerne-light. codesnap renders through
@@ -19,7 +28,7 @@ return {
     opts = {
       show_line_number = true,
       show_workspace = true,
-      -- Heartwood at ~14% instead of the default
+      -- Only used by <leader>cP. Heartwood at ~14% instead of the default
       -- white, which tinted the ink background a flat grey.
       highlight_color = "#E89A3C24",
       snapshot_config = {

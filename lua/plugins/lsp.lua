@@ -59,6 +59,13 @@ return {
             "--header-insertion=iwyu",
             "--completion-style=detailed",
             "--function-arg-placeholders",
+            -- Stays a bare named style: clangd validates --fallback-style
+            -- against its built-in names only. Inline YAML and file:<path>
+            -- are both rejected, and clangd then falls back to LLVM
+            -- *silently* (the reason only shows at log level info), which
+            -- is further from the intent than plain mozilla. Formatting on
+            -- save goes through conform below, which does take the full
+            -- style string.
             "--fallback-style=mozilla",
           },
           init_options = {
@@ -102,9 +109,15 @@ return {
       -- covers clangd's own formatting requests). This mirrors the fallback
       -- here so a project with no .clang-format still formats as Mozilla on
       -- save; a project's own .clang-format still wins over this.
+      --
+      -- Mozilla puts the return type on its own line for definitions. Both
+      -- keys below are needed to stop that: setting either one alone still
+      -- breaks, because the base style's other key survives and wins.
       formatters = {
         ["clang-format"] = {
-          prepend_args = { "--style=mozilla" },
+          prepend_args = {
+            "--style={BasedOnStyle: mozilla, BreakAfterReturnType: None, AlwaysBreakAfterDefinitionReturnType: None}",
+          },
         },
       },
     },
